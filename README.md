@@ -3,7 +3,7 @@
 
 BRKUT - Yet another breakout clone (a java course project).
 
-Features:
+Features: (TODO)
 * High scores!
 * Sound effects!
 * Green-on-black graphics!
