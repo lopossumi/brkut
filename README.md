@@ -2,6 +2,7 @@
 ======
 
 BRKUT - Yet another breakout clone (a java course project).
+http://javalabra.github.io/Javalabra2014-2/#/pages/
 
 Features: (TODO)
 * High scores!
