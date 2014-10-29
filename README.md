@@ -21,6 +21,6 @@ Additional features (pick some): (if the main features are finished too soon)
 
 TODO
 ====
-[ ] Class diagram 
-[ ] Concept art
-[ ] Sound sampling
+- [ ] Class diagram 
+- [ ] Concept art
+- [ ] Sound sampling
