@@ -25,11 +25,31 @@ BRKUT is a simple pong-type game against a destructible brick wall. The bricks h
 
 TODO
 ====
+High order tasks:
 - [ ] Study testing
 - [ ] Draw a class diagram 
 - [ ] Concept art
-- [ ] Sound sampling
+- [ ] Sound design and sampling
+
+Coding tasks:
+- [ ] Draw a blank canvas
+- [ ] Draw a rectangle on the canvas
+- [ ] Move a rectangle on the canvas
+- [ ] Bounce a square ball from < ^ > walls
+- [ ] Move the rectangle (paddle) with user input (constant speed, no inertia)
+- [ ] Add inertia
+- [ ] Add collision with paddle
 - [ ] Launch angle function
+- [ ] Create bricks
+- [ ] Add collision with bricks
+- [ ] Destroyable bricks
+- [ ] Score & lives & level counter
+- [ ] Arena generation
+- [ ] Levels
+- [ ] Game over screen with stats
+- [ ] High score table
+- [ ] Launch screen (player press start)
+- [ ] ...
 
 Gonna need some classes
 =======================
