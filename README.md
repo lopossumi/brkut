@@ -19,8 +19,26 @@ Additional features (pick some): (if the main features are finished too soon)
 * Animated splash screen!
 * Moving destructible objects!
 
+About the project
+=================
+BRKUT is a simple pong-type game against a destructible brick wall. The bricks have different strengths (hit points). The ball launch angle varies as a function of the contact point on the paddle. The game will feature oldskool lo-fi aesthetics: a square ball, limited amount of colours, 8-bit sounds and three-letter initials on the high score table.
+
 TODO
 ====
-- [ ] Class diagram 
+- [ ] Study testing
+- [ ] Draw a class diagram 
 - [ ] Concept art
 - [ ] Sound sampling
+- [ ] Launch angle function
+
+Gonna need some classes
+=======================
+Some propositions for classes:
+* Key listener
+* User interface
+* Paddle
+* Brick
+* Arena
+* Level
+* High scores
+* File I/O
