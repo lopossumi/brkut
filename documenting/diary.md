@@ -1,3 +1,3 @@
-Date;           Hours;      Comment;
-
-2014-10-28;     2.0;        Created git repository, NB configuration, idea drafting;
+|Date|Hours|Comment|
+|2014-10-28|2.0|Created git repository, NB configuration, idea drafting|
+|2014-10-29|1.0|Writing todo lists and figuring out where to start|
