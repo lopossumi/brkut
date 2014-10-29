@@ -18,3 +18,9 @@ Additional features (pick some): (if the main features are finished too soon)
 * Advanced graphics!
 * Animated splash screen!
 * Moving destructible objects!
+
+TODO
+====
+[ ] Class diagram 
+[ ] Concept art
+[ ] Sound sampling
