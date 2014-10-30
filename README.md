@@ -25,9 +25,21 @@ BRKUT is a simple pong-type game against a destructible brick wall. The bricks h
 
 TODO
 ====
+1st deadline tasks:
+- [x] Create github repository
+- [x] Create NB project
+- [ ] Config Maven, Cobertura & PIT
+- [x] Write project definition
+- [ ]
+
+2nd deadline tasks:
+- [ ] Start coding program logic
+- [ ] Write unit tests [0/10+]
+- - [ ] Generate PIT report
+- [x] Draw a preliminary class diagram 
+
 High order tasks:
 - [ ] Study testing
-- [ ] Draw a class diagram 
 - [ ] Concept art
 - [ ] Sound design and sampling
 
@@ -50,15 +62,3 @@ Coding tasks:
 - [ ] High score table
 - [ ] Launch screen (player press start)
 - [ ] ...
-
-Gonna need some classes
-=======================
-Some propositions for classes:
-* Key listener
-* User interface
-* Paddle
-* Brick
-* Arena
-* Level
-* High scores
-* File I/O
