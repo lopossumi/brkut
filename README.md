@@ -34,7 +34,7 @@ TODO
 2nd deadline tasks:
 - [ ] Start coding program logic
 - [ ] Write unit tests [0/10+]
--- [ ] Generate PIT report
+- [ ] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
 High order tasks:
