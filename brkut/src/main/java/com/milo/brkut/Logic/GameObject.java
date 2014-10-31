@@ -5,6 +5,7 @@ package com.milo.brkut.Logic;
  */
 public abstract class GameObject {
 
+        // Bounding box coordinates
 	private double left;
 	private double right;
 	private double top;
