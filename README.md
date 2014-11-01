@@ -21,7 +21,7 @@ Additional features (pick some): (if the main features are finished too soon)
 
 About the project
 =================
-BRKUT is a simple pong-type game against a destructible brick wall. The bricks have different strengths (hit points). The ball launch angle varies as a function of the contact point on the paddle. 
+BRKUT is a simple pong-type game against a destructible brick wall. The bricks have different strengths (hit points). The ball launch angle varies as a function of the contact point on the paddle. The game proceeds to the next, more difficult level whenever all the bricks are destroyed. If the player misses the ball, one life is lost; when all lives are lost, the game is over.
 
 Due to time constraints and personal preference, the game will feature oldskool lo-fi aesthetics: a square ball, limited amount of colours, 8-bit sounds and three-letter initials on the high score table.
 
