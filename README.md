@@ -27,6 +27,7 @@ BRKUT is a simple pong-type game against a destructible brick wall. The bricks h
 Due to time constraints and personal preference, the game will feature oldskool lo-fi aesthetics: a square ball, limited amount of colours, 8-bit sounds and three-letter initials on the high score table.
 
 ![alt tag](https://github.com/lopossumi/brkut/blob/master/documenting/game.png)
+Figure 1: Concept art. Actual game footage will differ.
 
 TODO
 ====
