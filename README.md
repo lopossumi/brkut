@@ -2,6 +2,7 @@
 ======
 
 BRKUT - Yet another breakout clone (a java course project).
+
 http://javalabra.github.io/Javalabra2014-2/#/pages/
 
 Features: (TODO)
@@ -25,26 +26,23 @@ BRKUT is a simple pong-type game against a destructible brick wall. The bricks h
 
 Due to time constraints and personal preference, the game will feature oldskool lo-fi aesthetics: a square ball, limited amount of colours, 8-bit sounds and three-letter initials on the high score table.
 
+![alt tag](https://github.com/lopossumi/brkut/blob/master/documenting/game.png)
+**Figure 1:** Concept art. Actual game footage will differ.
+
 TODO
 ====
-*1st deadline tasks:* DONE!
-- [x] Create github repository
-- [x] Create NB project
-- [x] Config Maven, Cobertura & PIT
-- [x] Write project definition
-
-*2nd deadline tasks:*
+**2nd deadline tasks:**
 - [x] Start coding program logic
 - [ ] Write unit tests [3/10+]
 - [ ] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
-*High order tasks:*
+**High order tasks:**
 - [ ] Study testing
 - [x] Concept art
 - [ ] Sound design and sampling
 
-*Coding tasks:*
+**Coding tasks:**
 - [ ] Draw a blank canvas
 - [ ] Draw a rectangle on the canvas
 - [ ] Move a rectangle on the canvas
