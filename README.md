@@ -35,7 +35,7 @@ TODO
 
 *2nd deadline tasks:*
 - [x] Start coding program logic
-- [ ] Write unit tests [1/10+]
+- [ ] Write unit tests [3/10+]
 - [ ] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
@@ -51,10 +51,10 @@ TODO
 - [ ] Bounce a square ball from < ^ > walls
 - [ ] Move the rectangle (paddle) with user input (constant speed, no inertia)
 - [ ] Add inertia
-- [ ] Add collision with paddle
+- [x] Add collision with paddle
 - [ ] Launch angle function
 - [ ] Create bricks
-- [ ] Add collision with bricks
+- [x] Add collision with bricks
 - [ ] Destroyable bricks
 - [ ] Score & lives & level counter
 - [ ] Arena generation
