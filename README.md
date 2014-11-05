@@ -35,13 +35,13 @@ TODO
 
 *2nd deadline tasks:*
 - [x] Start coding program logic
-- [ ] Write unit tests [0/10+]
+- [ ] Write unit tests [1/10+]
 - [ ] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
 *High order tasks:*
 - [ ] Study testing
-- [ ] Concept art
+- [x] Concept art
 - [ ] Sound design and sampling
 
 *Coding tasks:*
