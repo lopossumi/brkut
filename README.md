@@ -43,8 +43,8 @@ TODO
 - [ ] Sound design and sampling
 
 **Coding tasks:**
-- [ ] Draw a blank canvas
-- [ ] Draw a rectangle on the canvas
+- [x] Draw a blank canvas
+- [x] Draw a rectangle on the canvas
 - [ ] Move a rectangle on the canvas
 - [ ] Bounce a square ball from < ^ > walls
 - [ ] Move the rectangle (paddle) with user input (constant speed, no inertia)

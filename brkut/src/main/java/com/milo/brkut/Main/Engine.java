@@ -19,7 +19,7 @@ public class Engine extends Thread {
 
 	@Override
 	public void run() {
-		while (running) {
+		while (this.running) {
 			update();
 			draw();
 			hold();

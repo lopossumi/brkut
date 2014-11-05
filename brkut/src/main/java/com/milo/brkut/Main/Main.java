@@ -1,6 +1,7 @@
 package com.milo.brkut.Main;
 
-import com.milo.brkut.Logic.Arena;
+import com.milo.brkut.Logic.*;
+import javax.swing.SwingUtilities;
 
 /**
  * @author milo
@@ -8,7 +9,11 @@ import com.milo.brkut.Logic.Arena;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Hello, I'm BRKUT.");	
 		Arena arena = new Arena();
+                GUI gui = new GUI(arena);
+                Engine engine = new Engine(gui, arena);
+                SwingUtilities.invokeLater(gui);
+
+                engine.start();
 	}
 }

@@ -6,4 +6,5 @@
 |2014-11-05 | 2.0   | Some game logic                                                |
 |2014-11-05 | 3.0   | Concept art, collision detection                               |
 |2014-11-05 | 2.0   | Man versus git :E 
+|2014-11-05 | 2.0   | First stuff drawn | 
 

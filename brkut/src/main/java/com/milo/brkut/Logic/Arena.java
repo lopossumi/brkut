@@ -13,6 +13,10 @@ public class Arena {
     private GameStatus status;
 
     public Arena() {
+        this.playerOne = new Player(100, 100, 100, 10);
+        this.ball = new Ball(130, 130, 10, 10);
+        this.bricks = new ArrayList<>();
+        this.bricks.add(new Brick(100, 500, 100, 10));
         this.status = GameStatus.RUNNING;
     }
 
@@ -30,6 +34,8 @@ public class Arena {
         if (playerOne.getLives() == 0) {
             this.status = GameStatus.GAMEOVER;
         }
+        else
+            this.status = GameStatus.RUNNING;
     }
 
     public ArrayList<Brick> getBricks() {

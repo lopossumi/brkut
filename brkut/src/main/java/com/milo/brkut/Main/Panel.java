@@ -22,35 +22,32 @@ public class Panel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
+        this.setBackground(Color.BLACK);
         // Draw bricks
         g.setColor(Color.GREEN);
         ArrayList<Brick> bricks = arena.getBricks();
         for (Brick brick : bricks) {
-            g.drawRect(
-                    (int) brick.getX(),
-                    (int) brick.getY(),
-                    (int) brick.getWidth(),
-                    (int) brick.getHeight());
+            drawGameObject(brick, g);
         }
 
         // Draw player
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         Player playerOne = arena.getPlayerOne();
-        g.drawRect(
-                (int) playerOne.getX(),
-                (int) playerOne.getY(),
-                (int) playerOne.getWidth(),
-                (int) playerOne.getHeight());
-        
+        drawGameObject(playerOne, g);
+
         // Draw ball
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         Ball ball = arena.getBall();
-        g.drawRect(
-                (int) ball.getX(),
-                (int) ball.getY(),
-                (int) ball.getWidth(),
-                (int) ball.getHeight());
-        
+        drawGameObject(ball, g);
+
         getToolkit().sync();
+    }
+
+    public void drawGameObject(GameObject o, Graphics g) {
+        g.fillRect(
+                (int) o.getX(),
+                (int) o.getY(),
+                (int) o.getWidth(),
+                (int) o.getHeight());
     }
 }
