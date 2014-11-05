@@ -31,6 +31,10 @@ public class Engine extends Thread {
 	 */
 	public void update() {
 		arena.step();
+		arena.step();
+		arena.step();
+		arena.step();
+		arena.step();
 	}
 
 	/**

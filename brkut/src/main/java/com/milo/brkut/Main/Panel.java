@@ -44,7 +44,7 @@ public class Panel extends JPanel {
     }
 
     public void drawGameObject(GameObject o, Graphics g) {
-        g.fillRect(
+        g.drawRect(
                 (int) o.getX(),
                 (int) o.getY(),
                 (int) o.getWidth(),

@@ -13,11 +13,24 @@ public class Arena {
     private GameStatus status;
 
     public Arena() {
-        this.playerOne = new Player(100, 100, 100, 10);
-        this.ball = new Ball(130, 130, 10, 10);
+        this.playerOne = new Player(100, 500, 100, 10);
+        this.ball = new Ball(130, 530, 10, 10);
+        this.ball.accelerateXY(0.25, 1);
         this.bricks = new ArrayList<>();
-        this.bricks.add(new Brick(100, 500, 100, 10));
+        addBricks();
         this.status = GameStatus.RUNNING;
+    }
+
+    public void addBricks() {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 10; x++) {
+                this.bricks.add(new Brick(
+                        x * 60 + 50,
+                        y * 50 + 50,
+                        50,
+                        10));
+            }
+        }
     }
 
     /**
@@ -25,6 +38,39 @@ public class Arena {
      */
     public void step() {
         this.updateStatus();
+        ball.move();
+
+        // Check against all bricks, no optimization here yet.
+        for (Brick brick : bricks) {
+            switch (ball.collision(brick)) {
+                case -1:
+                    ball.bounceVertical();
+                    break;
+                case 1:
+                    ball.bounceHorizontal();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        switch (ball.collision(playerOne)) {
+            case -1:
+                ball.bounceVertical();
+                break;
+            case 1:
+                ball.bounceHorizontal();
+                break;
+            default:
+                break;
+        }
+
+        if (ball.getX() < 0 || ball.getX() > 800) {
+            ball.bounceHorizontal();
+        }
+        if (ball.getY() < 0 || ball.getY() > 600) {
+            ball.bounceVertical();
+        }
     }
 
     public void updateStatus() {
@@ -33,9 +79,9 @@ public class Arena {
         }
         if (playerOne.getLives() == 0) {
             this.status = GameStatus.GAMEOVER;
-        }
-        else
+        } else {
             this.status = GameStatus.RUNNING;
+        }
     }
 
     public ArrayList<Brick> getBricks() {

@@ -1,9 +1,9 @@
 package com.milo.brkut.Main;
 
 import com.milo.brkut.Logic.Arena;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -15,6 +15,9 @@ public class GUI implements Runnable {
     private JFrame frame;
     private Arena arena;
     private Panel window;
+    
+    private final int WIDTH = 800;
+    private final int HEIGHT = 600;
 
     public GUI(Arena arena) {
         this.arena = arena;
@@ -23,7 +26,7 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("BRKUT");
-        frame.setPreferredSize(new Dimension(800, 600));
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

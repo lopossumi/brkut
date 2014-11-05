@@ -48,6 +48,14 @@ public abstract class GameObject {
         return vy;
     }
 
+    public void setVx(double vx) {
+        this.vx = vx;
+    }
+
+    public void setVy(double vy) {
+        this.vy = vy;
+    }
+
     /**
      * Moves the object (dx,dy) units.
      *
