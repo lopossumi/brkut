@@ -13,7 +13,6 @@ Collisions are detected between GameObjects. To determine where the ball should 
 
 **Figure 1:** Testing collision detection in Excel.
 
-Extensions
-----------
+**Extensions**
 
 One possibility would be to alter the collision routine slightly so that corner hits would alter the angle of the ball.
