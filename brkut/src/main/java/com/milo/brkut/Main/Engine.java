@@ -26,18 +26,27 @@ public class Engine extends Thread {
 		}
 	}
 
+	/**
+	 * Update the game arena.
+	 */
 	public void update() {
-		// Todo
+		arena.step();
 	}
 
+	/**
+	 * Draw updated game arena on screen.
+	 */
 	public void draw() {
 		gui.draw();
 	}
-
+	
 	public void close() {
 		running = false;
 	}
 
+	/**
+	 * Wait for the next calculation step.
+	 */
 	public void hold() {
 		try {
 			Thread.sleep(1000 / 60);
