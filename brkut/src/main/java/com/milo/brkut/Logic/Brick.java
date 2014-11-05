@@ -1,7 +1,7 @@
 package com.milo.brkut.Logic;
 
 /**
- * @author lopossumi
+ * @author milo
  */
 public class Brick extends GameObject {
 
