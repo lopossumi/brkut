@@ -31,24 +31,18 @@ Due to time constraints and personal preference, the game will feature oldskool 
 
 TODO
 ====
-*1st deadline tasks:* DONE!
-- [x] Create github repository
-- [x] Create NB project
-- [x] Config Maven, Cobertura & PIT
-- [x] Write project definition
-
-*2nd deadline tasks:*
+**2nd deadline tasks:**
 - [x] Start coding program logic
 - [ ] Write unit tests [3/10+]
 - [ ] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
-*High order tasks:*
+**High order tasks:**
 - [ ] Study testing
 - [x] Concept art
 - [ ] Sound design and sampling
 
-*Coding tasks:*
+**Coding tasks:**
 - [ ] Draw a blank canvas
 - [ ] Draw a rectangle on the canvas
 - [ ] Move a rectangle on the canvas
