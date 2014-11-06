@@ -1,5 +1,7 @@
 package com.milo.brkut.Logic;
 
+import java.awt.Color;
+
 /**
  * @author milo
  */
@@ -14,6 +16,7 @@ public abstract class GameObject {
     // Speed components
     private double vx;
     private double vy;
+    Color color;
 
     public GameObject(double x, double y, double width, double height) {
         this.x = x;
@@ -123,5 +126,9 @@ public abstract class GameObject {
         } else {
             return 1;
         }
+    }
+
+    public Color getColor() {
+        return this.color;
     }
 }

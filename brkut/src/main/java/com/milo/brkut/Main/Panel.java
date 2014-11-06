@@ -4,6 +4,7 @@ import com.milo.brkut.Logic.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JPanel;
 
 /**
@@ -25,7 +26,7 @@ public class Panel extends JPanel {
         this.setBackground(Color.BLACK);
         // Draw bricks
         g.setColor(Color.GREEN);
-        ArrayList<Brick> bricks = arena.getBricks();
+        HashSet<Brick> bricks = arena.getBricks();
         for (Brick brick : bricks) {
             drawGameObject(brick, g);
         }
@@ -44,7 +45,8 @@ public class Panel extends JPanel {
     }
 
     public void drawGameObject(GameObject o, Graphics g) {
-        g.drawRect(
+        g.setColor(o.getColor());
+        g.fillRect(
                 (int) o.getX(),
                 (int) o.getY(),
                 (int) o.getWidth(),

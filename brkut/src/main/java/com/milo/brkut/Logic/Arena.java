@@ -1,6 +1,6 @@
 package com.milo.brkut.Logic;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * @author milo
@@ -9,19 +9,19 @@ public class Arena {
 
     private Player playerOne;
     private Ball ball;
-    private ArrayList<Brick> bricks;
+    private HashSet<Brick> bricks;
     private GameStatus status;
 
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 10);
         this.ball = new Ball(130, 530, 10, 10);
         this.ball.accelerateXY(0.25, 1);
-        this.bricks = new ArrayList<>();
+        this.bricks = new HashSet<>();
         addBricks();
         this.status = GameStatus.RUNNING;
     }
 
-    public void addBricks() {
+    private void addBricks() {
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 10; x++) {
                 this.bricks.add(new Brick(
@@ -40,10 +40,15 @@ public class Arena {
         this.updateStatus();
         ball.move();
 
+        Brick temp = null;
         // Check against all bricks, no optimization here yet.
         for (Brick brick : bricks) {
             switch (ball.collision(brick)) {
                 case -1:
+                    brick.damage(1);
+                    if (brick.hp() == 0) {
+                        temp = brick;
+                    }
                     ball.bounceVertical();
                     break;
                 case 1:
@@ -53,7 +58,10 @@ public class Arena {
                     break;
             }
         }
-        
+        if (temp != null){
+            bricks.remove(temp);
+        }
+
         switch (ball.collision(playerOne)) {
             case -1:
                 ball.bounceVertical();
@@ -84,7 +92,7 @@ public class Arena {
         }
     }
 
-    public ArrayList<Brick> getBricks() {
+    public HashSet<Brick> getBricks() {
         return this.bricks;
     }
 
