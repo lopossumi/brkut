@@ -1,10 +1,6 @@
 package com.milo.brkut.Logic;
 
 import java.util.HashSet;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,9 +20,12 @@ public class ArenaTest {
     public void testStep() {
         System.out.println("step");
         Arena instance = new Arena();
-        instance.step();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // After 1000 steps, we should have hit something. Anything.
+        for(int i=0; i<1000; i++){
+            instance.step();
+        }
+        assertTrue(instance.getScore()>0);
     }
 
     /**
@@ -36,11 +35,9 @@ public class ArenaTest {
     public void testGetStatus() {
         System.out.println("getStatus");
         Arena instance = new Arena();
-        GameStatus expResult = null;
+        GameStatus expResult = GameStatus.RUNNING;
         GameStatus result = instance.getStatus();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -50,11 +47,9 @@ public class ArenaTest {
     public void testGetBricks() {
         System.out.println("getBricks");
         Arena instance = new Arena();
-        HashSet<Brick> expResult = null;
+        int expResult = 60;
         HashSet<Brick> result = instance.getBricks();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result.size());
     }
 
     /**
@@ -64,11 +59,9 @@ public class ArenaTest {
     public void testGetPlayerOne() {
         System.out.println("getPlayerOne");
         Arena instance = new Arena();
-        Player expResult = null;
+        int expResult = 3;
         Player result = instance.getPlayerOne();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result.getLives());
     }
 
     /**
@@ -78,11 +71,9 @@ public class ArenaTest {
     public void testGetBall() {
         System.out.println("getBall");
         Arena instance = new Arena();
-        Ball expResult = null;
+        int expResult = -1;
         Ball result = instance.getBall();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(expResult, result.getVy(), 0.0);
     }
     
 }
