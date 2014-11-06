@@ -31,10 +31,10 @@ Due to time constraints and personal preference, the game will feature oldskool 
 
 TODO
 ====
-**2nd deadline tasks:**
+**2nd deadline tasks: DONE!**
 - [x] Start coding program logic
-- [ ] Write unit tests [3/10+]
-- [ ] Generate PIT report
+- [x] Write unit tests [12/10+]
+- [x] Generate PIT report
 - [x] Draw a preliminary class diagram 
 
 **High order tasks:**
