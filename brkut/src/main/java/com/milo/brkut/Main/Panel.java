@@ -27,6 +27,7 @@ public class Panel extends JPanel {
         }
         drawGameObject(arena.getPlayerOne(), g);
         drawGameObject(arena.getBall(), g);
+        drawScore(g);
 
         getToolkit().sync();
     }
@@ -38,5 +39,11 @@ public class Panel extends JPanel {
                 (int) (o.getY()-o.getHeight()/2),
                 (int) o.getWidth(),
                 (int) o.getHeight());
+    }
+
+    private void drawScore(Graphics g) {
+        g.setColor(Color.GREEN);
+        char[] score = ("SCORE " + String.valueOf(arena.getScore())).toCharArray();
+        g.drawChars(score, 0, score.length, 30,30);
     }
 }

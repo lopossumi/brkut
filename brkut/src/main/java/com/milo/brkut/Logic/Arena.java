@@ -10,7 +10,7 @@ public class Arena {
     private Player playerOne;
     private Ball ball;
     private HashSet<Brick> bricks;
-    private GameStatus status;
+    private int score;
 
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 10);
@@ -18,19 +18,19 @@ public class Arena {
         this.ball.accelerateXY(0.31, -1);
         this.bricks = new HashSet<>();
         addBricks();
-        this.status = GameStatus.RUNNING;
+        this.score = 0;
     }
 
     // TODO: This is for testing and should be rewritten to use some sort of 
     // level generation thingie.
     private void addBricks() {
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 10; x++) {
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < 12; x++) {
                 this.bricks.add(new Brick(
-                        x * 60 + 50,
+                        x * 60 + 80,
                         y * 25 + 50,
-                        50,
-                        10));
+                        55,
+                        20));
             }
         }
     }
@@ -39,7 +39,6 @@ public class Arena {
      * Do operations for this step. - move stuff - check collisions and deaths
      */
     public void step() {
-        this.updateStatus();
         ball.move();
 
         // If a brick is destroyed, it is stored here.
@@ -67,15 +66,19 @@ public class Arena {
             ball.bounceVertical();
         }
     }
-
-    public void updateStatus() {
+    
+    public GameStatus getStatus(){
         if (bricks.isEmpty()) {
-            this.status = GameStatus.WON;
+            return GameStatus.WON;
         }
-        if (playerOne.getLives() == 0) {
-            this.status = GameStatus.GAMEOVER;
-        } else {
-            this.status = GameStatus.RUNNING;
+        else if (playerOne.getLives() == 0) {
+            return GameStatus.GAMEOVER;
+        } 
+        else if (!playerOne.isAlive()) {
+            return GameStatus.DIED;
+        }
+        else {
+            return GameStatus.RUNNING;
         }
     }
 
@@ -86,21 +89,22 @@ public class Arena {
     private Brick checkCollisionsWithBricks() {
         Brick destroyed = null;
         for (Brick brick : this.bricks) {
-            switch (ball.collision(brick)) {
-                case -1:
-                    ball.bounceVertical();
+            int i = ball.collision(brick);
+            switch (i) {
+                case -1: case 1:
+                    if (i==-1) 
+                        ball.bounceVertical();
+                    else 
+                        ball.bounceHorizontal();
+                    
                     brick.damage(1);
-                    if (brick.hp() == 0) {
+                    if (!brick.isAlive()) {
                         destroyed = brick;
                     }
+                    this.score += 100;
+
                     break;
-                case 1:
-                    ball.bounceHorizontal();
-                    brick.damage(1);
-                    if (brick.hp() == 0) {
-                        destroyed = brick;
-                    }
-                    break;
+               
                 default:
                     break;
             }
@@ -114,5 +118,9 @@ public class Arena {
 
     public Ball getBall() {
         return this.ball;
+    }
+    
+    public int getScore(){
+        return this.score;
     }
 }
