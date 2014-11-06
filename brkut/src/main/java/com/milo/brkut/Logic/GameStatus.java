@@ -2,7 +2,7 @@ package com.milo.brkut.Logic;
 
 /**
  *
- * @author lopossumi
+ * @author milo
  */
 public enum GameStatus {
 	RUNNING, WON, DIED, GAMEOVER

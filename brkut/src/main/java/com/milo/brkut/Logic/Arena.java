@@ -15,18 +15,20 @@ public class Arena {
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 10);
         this.ball = new Ball(130, 530, 10, 10);
-        this.ball.accelerateXY(0.25, 1);
+        this.ball.accelerateXY(0.31, -1);
         this.bricks = new HashSet<>();
         addBricks();
         this.status = GameStatus.RUNNING;
     }
 
+    // TODO: This is for testing and should be rewritten to use some sort of 
+    // level generation thingie.
     private void addBricks() {
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 10; x++) {
                 this.bricks.add(new Brick(
                         x * 60 + 50,
-                        y * 50 + 50,
+                        y * 25 + 50,
                         50,
                         10));
             }
@@ -40,26 +42,11 @@ public class Arena {
         this.updateStatus();
         ball.move();
 
-        Brick temp = null;
-        // Check against all bricks, no optimization here yet.
-        for (Brick brick : bricks) {
-            switch (ball.collision(brick)) {
-                case -1:
-                    brick.damage(1);
-                    if (brick.hp() == 0) {
-                        temp = brick;
-                    }
-                    ball.bounceVertical();
-                    break;
-                case 1:
-                    ball.bounceHorizontal();
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (temp != null){
-            bricks.remove(temp);
+        // If a brick is destroyed, it is stored here.
+        Brick destroyed;
+        destroyed = checkCollisionsWithBricks();
+        if (destroyed != null) {
+            bricks.remove(destroyed);
         }
 
         switch (ball.collision(playerOne)) {
@@ -94,6 +81,31 @@ public class Arena {
 
     public HashSet<Brick> getBricks() {
         return this.bricks;
+    }
+
+    private Brick checkCollisionsWithBricks() {
+        Brick destroyed = null;
+        for (Brick brick : this.bricks) {
+            switch (ball.collision(brick)) {
+                case -1:
+                    ball.bounceVertical();
+                    brick.damage(1);
+                    if (brick.hp() == 0) {
+                        destroyed = brick;
+                    }
+                    break;
+                case 1:
+                    ball.bounceHorizontal();
+                    brick.damage(1);
+                    if (brick.hp() == 0) {
+                        destroyed = brick;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return destroyed;
     }
 
     public Player getPlayerOne() {

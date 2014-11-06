@@ -28,27 +28,27 @@ public abstract class GameObject {
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
     public double getWidth() {
-        return width;
+        return this.width;
     }
 
     public double getHeight() {
-        return height;
+        return this.height;
     }
 
     public double getVx() {
-        return vx;
+        return this.vx;
     }
 
     public double getVy() {
-        return vy;
+        return this.vy;
     }
 
     public void setVx(double vx) {
@@ -121,7 +121,7 @@ public abstract class GameObject {
         // No collision (overlap <= 0 on either axis)
         if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
             return 0;
-        } else if (xOverlapAmount > yOverlapAmount) {
+        } else if (xOverlapAmount >= yOverlapAmount) {
             return -1;
         } else {
             return 1;

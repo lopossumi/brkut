@@ -3,13 +3,13 @@ package com.milo.brkut.Main;
 import com.milo.brkut.Logic.Arena;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 /**
  * @author milo
  */
+
 public class GUI implements Runnable {
 
     private JFrame frame;
@@ -26,10 +26,9 @@ public class GUI implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("BRKUT");
-        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setResizable(false);
+        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         createComponents(frame.getContentPane());
 
         
@@ -45,7 +44,6 @@ public class GUI implements Runnable {
         container.add(window);
     }
 
-    // tarjotaan Kayttoliittyman ulkopuolelta pääsy ikkunan piirtämiseen
     public void draw() {
         if (window == null) {
             return;
