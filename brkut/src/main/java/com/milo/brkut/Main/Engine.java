@@ -1,6 +1,8 @@
 package com.milo.brkut.Main;
 
 import com.milo.brkut.Logic.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author milo
@@ -10,11 +12,13 @@ public class Engine extends Thread {
 	private GUI gui;
 	private Arena arena;
 	private boolean running;
+        private SoundEngine sounds;
 
 	public Engine(GUI gui, Arena arena) {
 		this.gui = gui;
 		this.arena = arena;
 		this.running = true;
+                this.sounds = new SoundEngine();
 	}
 
 	@Override
@@ -32,7 +36,14 @@ public class Engine extends Thread {
 	public void update() {
             //Do 10 cycles of logic per frame.
             for (int i=0; i<10; i++){
-                arena.step();
+                GameStatus s = arena.step();
+                if (s == GameStatus.HIT){
+                    try {
+                        sounds.hit();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
 	}
 

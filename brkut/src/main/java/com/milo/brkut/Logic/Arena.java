@@ -11,6 +11,7 @@ public class Arena {
     private Ball ball;
     private HashSet<Brick> bricks;
     private int score;
+    private boolean hit;
 
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 10);
@@ -19,6 +20,7 @@ public class Arena {
         this.bricks = new HashSet<>();
         addBricks();
         this.score = 0;
+        this.hit = false;
     }
 
     // TODO: This is for testing and should be rewritten to use some sort of 
@@ -37,8 +39,9 @@ public class Arena {
 
     /**
      * Do operations for this step. - move stuff - check collisions and deaths
+     * @return 
      */
-    public void step() {
+    public GameStatus step() {
         ball.move();
 
         // If a brick is destroyed, it is stored here.
@@ -65,9 +68,14 @@ public class Arena {
         if (ball.getY() < 0 || ball.getY() > 600) {
             ball.bounceVertical();
         }
+        return getStatus();
     }
     
     public GameStatus getStatus(){
+        if (this.hit){
+            this.hit = false;
+            return GameStatus.HIT;
+        }
         if (bricks.isEmpty()) {
             return GameStatus.WON;
         }
@@ -102,6 +110,7 @@ public class Arena {
                         destroyed = brick;
                     }
                     this.score += 100;
+                    this.hit = true;
 
                     break;
                
