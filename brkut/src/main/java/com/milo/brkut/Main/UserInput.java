@@ -1,5 +1,6 @@
 package com.milo.brkut.Main;
 
+import com.milo.brkut.Logic.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,19 +10,27 @@ import java.awt.event.KeyListener;
  */
 public class UserInput implements KeyListener {
 
+    private Player player;
+
+    public UserInput(Player p) {
+        this.player = p;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            player.accelerateX(-5);
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            player.accelerateX(5);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

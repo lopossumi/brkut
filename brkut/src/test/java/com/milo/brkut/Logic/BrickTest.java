@@ -26,6 +26,6 @@ public class BrickTest {
         assertEquals(2, instance.getHitpoints());
         instance.damage(3);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals(-1, instance.getHitpoints());
+        assertEquals(0, instance.getHitpoints());
     }
 }

@@ -40,13 +40,19 @@ public class Arena {
      * Do operations for this step. - move stuff - check collisions and deaths
      */
     public void step() {
+        playerOne.move();
         ball.move();
+        playerOne.decelerate();
 
         ArrayList<GameObject> collisions = Collision.checkCollisions(this.ball, this.bricks);
         
-         //Perhaps collided with some brick(s).
         while (!collisions.isEmpty()) {
+            this.score += 100;
             GameObject collider = collisions.get(0);
+            if (this.ball.collision(collider)==-1) {
+                this.ball.bounceVertical();
+            } else 
+                this.ball.bounceHorizontal();
             collider.damage(1);
             if(!collider.isAlive()) {
                 this.bricks.remove(collider);
@@ -91,32 +97,6 @@ public class Arena {
     public HashSet<GameObject> getBricks() {
         return this.bricks;
     }
-
-//    private Brick checkCollisionsWithBricks() {
-//        Brick destroyed = null;
-//        for (Brick brick : this.bricks) {
-//            int i = ball.collision(brick);
-//            switch (i) {
-//                case -1: case 1:
-//                    if (i==-1) 
-//                        ball.bounceVertical();
-//                    else 
-//                        ball.bounceHorizontal();
-//                    
-//                    brick.damage(1);
-//                    if (!brick.isAlive()) {
-//                        destroyed = brick;
-//                    }
-//                    this.score += 100;
-//
-//                    break;
-//               
-//                default:
-//                    break;
-//            }
-//        }
-//        return destroyed;
-//    }
 
     public Player getPlayerOne() {
         return this.playerOne;

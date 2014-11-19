@@ -32,8 +32,8 @@ public class GUI implements Runnable {
         createComponents(frame.getContentPane());
 
         
-        //NappaimistonKuuntelija kuuntelija = new NappaimistonKuuntelija(maailma.getPelihahmo());
-        //frame.addKeyListener(kuuntelija);
+        UserInput input = new UserInput(this.arena.getPlayerOne());
+        frame.addKeyListener(input);
         
         frame.pack();
         frame.setVisible(true);

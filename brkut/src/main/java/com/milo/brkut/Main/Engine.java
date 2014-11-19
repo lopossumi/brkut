@@ -30,11 +30,9 @@ public class Engine extends Thread {
 	 * Update the game arena.
 	 */
 	public void update() {
-            //Do 10 cycles of logic per frame.
-            for (int i=0; i<10; i++){
+                arena.step();
                 arena.step();
             }
-	}
 
 	/**
 	 * Draw updated game arena on screen.
