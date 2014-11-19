@@ -44,13 +44,15 @@ public class Arena {
 
         ArrayList<GameObject> collisions = Collision.checkCollisions(this.ball, this.bricks);
         
-        // Perhaps collided with some brick(s).
-//        while (!collisions.isEmpty()) {
-//            GameObject collider = collisions.get(0);
-//            collider.damage(1);
-//            if(collider.isAlive)
-//            if(collisions.get(0))
-//        }
+         //Perhaps collided with some brick(s).
+        while (!collisions.isEmpty()) {
+            GameObject collider = collisions.get(0);
+            collider.damage(1);
+            if(!collider.isAlive()) {
+                this.bricks.remove(collider);
+            }
+            collisions.remove(collider);
+        }
 
         switch (ball.collision(playerOne)) {
             case -1:

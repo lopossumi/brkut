@@ -35,6 +35,7 @@ public class Brick extends GameObject {
             this.color = Color.RED;
     }
 
+    @Override
     public boolean isAlive() {
         return (this.hitpoints > 0);
     }

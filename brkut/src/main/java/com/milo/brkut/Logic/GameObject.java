@@ -134,4 +134,8 @@ public abstract class GameObject {
     
     public void damage(int amount){
     }
+
+    boolean isAlive() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
