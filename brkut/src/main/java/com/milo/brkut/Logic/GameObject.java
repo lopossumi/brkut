@@ -131,4 +131,7 @@ public abstract class GameObject {
     public Color getColor() {
         return this.color;
     }
+    
+    public void damage(int amount){
+    }
 }

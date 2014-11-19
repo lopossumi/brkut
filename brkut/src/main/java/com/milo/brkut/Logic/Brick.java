@@ -17,19 +17,29 @@ public class Brick extends GameObject {
         this.alive = true;
     }
 
+    @Override
     public void damage(int amount) {
-        this.hitpoints -= amount;
-        this.color = Color.RED;
-        if (this.hitpoints <= 0) {
-            this.alive = false;
+        if (amount>this.hitpoints)
+            this.hitpoints = 0;
+        else 
+            this.hitpoints-=amount;
+        
+        updateColor();
+    }
+
+    private void updateColor() {
+        if (this.hitpoints > 1) {
+            this.color = Color.GREEN;
         }
+        else
+            this.color = Color.RED;
     }
 
     public boolean isAlive() {
-        return this.alive;
+        return (this.hitpoints > 0);
     }
 
-    public int hp() {
+    public int getHitpoints() {
         return this.hitpoints;
     }
 }

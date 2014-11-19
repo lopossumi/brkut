@@ -1,5 +1,6 @@
 package com.milo.brkut.Logic;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -9,7 +10,7 @@ public class Arena {
 
     private Player playerOne;
     private Ball ball;
-    private HashSet<Brick> bricks;
+    private HashSet<GameObject> bricks;
     private int score;
 
     public Arena() {
@@ -41,12 +42,15 @@ public class Arena {
     public void step() {
         ball.move();
 
-        // If a brick is destroyed, it is stored here.
-        Brick destroyed;
-        destroyed = checkCollisionsWithBricks();
-        if (destroyed != null) {
-            bricks.remove(destroyed);
-        }
+        ArrayList<Collider> collisions = Collision.checkCollisions(this.ball, this.bricks);
+        
+        // Perhaps collided with some brick(s).
+//        while (!collisions.isEmpty()) {
+//            GameObject collider = collisions.get(0);
+//            collider.damage(1);
+//            if(collider.isAlive)
+//            if(collisions.get(0))
+//        }
 
         switch (ball.collision(playerOne)) {
             case -1:
@@ -86,31 +90,31 @@ public class Arena {
         return this.bricks;
     }
 
-    private Brick checkCollisionsWithBricks() {
-        Brick destroyed = null;
-        for (Brick brick : this.bricks) {
-            int i = ball.collision(brick);
-            switch (i) {
-                case -1: case 1:
-                    if (i==-1) 
-                        ball.bounceVertical();
-                    else 
-                        ball.bounceHorizontal();
-                    
-                    brick.damage(1);
-                    if (!brick.isAlive()) {
-                        destroyed = brick;
-                    }
-                    this.score += 100;
-
-                    break;
-               
-                default:
-                    break;
-            }
-        }
-        return destroyed;
-    }
+//    private Brick checkCollisionsWithBricks() {
+//        Brick destroyed = null;
+//        for (Brick brick : this.bricks) {
+//            int i = ball.collision(brick);
+//            switch (i) {
+//                case -1: case 1:
+//                    if (i==-1) 
+//                        ball.bounceVertical();
+//                    else 
+//                        ball.bounceHorizontal();
+//                    
+//                    brick.damage(1);
+//                    if (!brick.isAlive()) {
+//                        destroyed = brick;
+//                    }
+//                    this.score += 100;
+//
+//                    break;
+//               
+//                default:
+//                    break;
+//            }
+//        }
+//        return destroyed;
+//    }
 
     public Player getPlayerOne() {
         return this.playerOne;

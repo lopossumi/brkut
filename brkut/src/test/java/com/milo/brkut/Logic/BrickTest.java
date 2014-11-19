@@ -23,9 +23,9 @@ public class BrickTest {
     public void testHPandDamage() {
         System.out.println("damage");
         Brick instance = new Brick(0,0,10,10);
-        assertEquals(2, instance.hp());
+        assertEquals(2, instance.getHitpoints());
         instance.damage(3);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals(-1, instance.hp());
+        assertEquals(-1, instance.getHitpoints());
     }
 }
