@@ -42,7 +42,7 @@ public class Arena {
     public void step() {
         ball.move();
 
-        ArrayList<Collider> collisions = Collision.checkCollisions(this.ball, this.bricks);
+        ArrayList<GameObject> collisions = Collision.checkCollisions(this.ball, this.bricks);
         
         // Perhaps collided with some brick(s).
 //        while (!collisions.isEmpty()) {
@@ -86,7 +86,7 @@ public class Arena {
         }
     }
 
-    public HashSet<Brick> getBricks() {
+    public HashSet<GameObject> getBricks() {
         return this.bricks;
     }
 

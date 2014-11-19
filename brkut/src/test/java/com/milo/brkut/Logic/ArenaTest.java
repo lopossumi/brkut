@@ -48,7 +48,7 @@ public class ArenaTest {
         System.out.println("getBricks");
         Arena instance = new Arena();
         int expResult = 60;
-        HashSet<Brick> result = instance.getBricks();
+        HashSet<GameObject> result = instance.getBricks();
         assertEquals(expResult, result.size());
     }
 

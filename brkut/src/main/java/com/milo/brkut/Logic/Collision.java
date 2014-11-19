@@ -15,7 +15,7 @@ import java.util.HashSet;
 class Collision {
 
     static ArrayList<GameObject> checkCollisions(GameObject ego, HashSet<GameObject> others) {
-        ArrayList<GameObject> collisions = new ArrayList<GameObject>();
+        ArrayList<GameObject> collisions = new ArrayList<>();
         for (GameObject other:others){
             if (ego.collision(other) != 0)
                 collisions.add(other);

@@ -22,7 +22,7 @@ public class Panel extends JPanel {
         this.setBackground(Color.BLACK);
         
         // Draw GameObjects
-        for (Brick brick : arena.getBricks()) {
+        for (GameObject brick : arena.getBricks()) {
             drawGameObject(brick, g);
         }
         drawGameObject(arena.getPlayerOne(), g);
