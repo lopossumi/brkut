@@ -30,9 +30,8 @@ public class Engine extends Thread {
 	 * Update the game arena.
 	 */
 	public void update() {
-                arena.step();
-                arena.step();
-            }
+                arena.step(this.gui.input().update());
+        }
 
 	/**
 	 * Draw updated game arena on screen.

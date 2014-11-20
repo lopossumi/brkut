@@ -15,8 +15,8 @@ public class Arena {
 
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 10);
-        this.ball = new Ball(130, 530, 10, 10);
-        this.ball.accelerateXY(0.31, -1);
+        this.ball = new Ball(130, 450, 10, 10);
+        this.ball.accelerateXY(0.7, -5);
         this.bricks = new HashSet<>();
         addBricks();
         this.score = 0;
@@ -38,23 +38,35 @@ public class Arena {
 
     /**
      * Do operations for this step. - move stuff - check collisions and deaths
+     *
+     * @param input
      */
-    public void step() {
+    public void step(boolean[] input) {
+        if (input[0]) {
+            playerOne.accelerateX(-2);
+        }
+        if (input[1]) {
+            playerOne.accelerateX(2);
+        }
+
         playerOne.move();
         ball.move();
         playerOne.decelerate();
 
         ArrayList<GameObject> collisions = Collision.checkCollisions(this.ball, this.bricks);
-        
+
         while (!collisions.isEmpty()) {
             this.score += 100;
             GameObject collider = collisions.get(0);
-            if (this.ball.collision(collider)==-1) {
+
+            if (this.ball.collision(collider) == -1) {
                 this.ball.bounceVertical();
-            } else 
+            } else {
                 this.ball.bounceHorizontal();
+            }
+
             collider.damage(1);
-            if(!collider.isAlive()) {
+            if (!collider.isAlive()) {
                 this.bricks.remove(collider);
             }
             collisions.remove(collider);
@@ -78,18 +90,15 @@ public class Arena {
             ball.bounceVertical();
         }
     }
-    
-    public GameStatus getStatus(){
+
+    public GameStatus getStatus() {
         if (bricks.isEmpty()) {
             return GameStatus.WON;
-        }
-        else if (playerOne.getLives() == 0) {
+        } else if (playerOne.getLives() == 0) {
             return GameStatus.GAMEOVER;
-        } 
-        else if (!playerOne.isAlive()) {
+        } else if (!playerOne.isAlive()) {
             return GameStatus.DIED;
-        }
-        else {
+        } else {
             return GameStatus.RUNNING;
         }
     }
@@ -105,8 +114,8 @@ public class Arena {
     public Ball getBall() {
         return this.ball;
     }
-    
-    public int getScore(){
+
+    public int getScore() {
         return this.score;
     }
 }

@@ -23,7 +23,7 @@ public class ArenaTest {
         
         // After 1000 steps, we should have hit something. Anything.
         for(int i=0; i<1000; i++){
-            instance.step();
+            instance.step(new boolean[2]);
         }
         assertTrue(instance.getScore()>0);
     }

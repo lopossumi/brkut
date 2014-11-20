@@ -15,12 +15,14 @@ public class GUI implements Runnable {
     private JFrame frame;
     private Arena arena;
     private Panel window;
+    private UserInput input;
     
     private final int WIDTH = 800;
     private final int HEIGHT = 600;
 
     public GUI(Arena arena) {
         this.arena = arena;
+        this.input = new UserInput(this.arena.getPlayerOne());
     }
 
     @Override
@@ -32,8 +34,8 @@ public class GUI implements Runnable {
         createComponents(frame.getContentPane());
 
         
-        UserInput input = new UserInput(this.arena.getPlayerOne());
-        frame.addKeyListener(input);
+        //UserInput input = new UserInput(this.arena.getPlayerOne());
+        frame.addKeyListener(this.input);
         
         frame.pack();
         frame.setVisible(true);
@@ -54,5 +56,9 @@ public class GUI implements Runnable {
 
     public JFrame getFrame() {
         return frame;
+    }
+    
+    public UserInput input(){
+        return this.input;
     }
 }
