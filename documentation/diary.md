@@ -9,4 +9,9 @@
 |2014-11-05 | 2.0   | **First stuff drawn**                                          | 
 |2014-11-05 | 1.0   | Drawn stuff collide                                            | 
 |2014-11-06 | 4.0   | Bricks take damage and are destroyed, score, fixes             | 
-|2014-11-06 | 1.0   | Pit report, yet another NetBeans installation                  | 
+|2014-11-06 | 1.0   | Pit report, yet another NetBeans installation                  |
+|2014-11-08 | 2.0   | Sound engine                                                   |
+|2014-11-10 | 2.0   | Keylistener stuff                                              |
+|2014-11-19 | 2.0   | Collision detection refactored, keyboard input first proto     |
+|2014-11-20 | 2.0   | Better input handling                                          |
+|2014-11-21 | 2.0   | Soundtest merge, pit report update                             |
