@@ -71,7 +71,7 @@ public class ArenaTest {
     public void testGetBall() {
         System.out.println("getBall");
         Arena instance = new Arena();
-        int expResult = -1;
+        int expResult = -5;
         Ball result = instance.getBall();
         assertEquals(expResult, result.getVy(), 0.0);
     }

@@ -40,23 +40,14 @@ public class Arena {
 
     /**
      * Do operations for this step. - move stuff - check collisions and deaths
-     * @param input
+     * @param input Keyboard inputs
      * @return 
      */
     public void step(boolean[] input) {
-        if (input[0]) {
-            playerOne.accelerateX(-2);
-        }
-        if (input[1]) {
-            playerOne.accelerateX(2);
-        }
-
-        playerOne.move();
+        movePlayerOne(input);
         ball.move();
-        playerOne.decelerate();
-
+        
         ArrayList<GameObject> collisions = Collision.checkCollisions(this.ball, this.bricks);
-
         while (!collisions.isEmpty()) {
             this.hit = true;
             this.score += 100;
@@ -123,5 +114,16 @@ public class Arena {
 
     public int getScore() {
         return this.score;
+    }
+
+    private void movePlayerOne(boolean[] input) {
+        if (input[KeypressEnum.LEFT.getValue()]) {
+            playerOne.accelerateX(-2);
+        }
+        if (input[KeypressEnum.RIGHT.getValue()]) {
+            playerOne.accelerateX(2);
+        }
+        playerOne.move();
+        playerOne.decelerate();
     }
 }

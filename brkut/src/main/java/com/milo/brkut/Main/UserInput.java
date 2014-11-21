@@ -1,5 +1,6 @@
 package com.milo.brkut.Main;
 
+import com.milo.brkut.Logic.KeypressEnum;
 import com.milo.brkut.Logic.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,11 +12,11 @@ import java.awt.event.KeyListener;
 public class UserInput implements KeyListener {
 
     //private Player player;
-    private boolean[] keys;
+    private boolean[] keyPresses;
 
     public UserInput(Player p) {
         //this.player = p;
-        this.keys = new boolean[2];
+        this.keyPresses = new boolean[2];
     }
 
     @Override
@@ -25,25 +26,23 @@ public class UserInput implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            //player.accelerateX(-5);
-            this.keys[0] = true;
+            this.keyPresses[KeypressEnum.LEFT.getValue()] = true;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            //player.accelerateX(5);
-            this.keys[1] = true;
+            this.keyPresses[KeypressEnum.RIGHT.getValue()] = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.keys[0] = false;
+            this.keyPresses[KeypressEnum.LEFT.getValue()] = false;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.keys[1] = false;
+            this.keyPresses[KeypressEnum.RIGHT.getValue()] = false;
         }
     }
 
     public boolean[] update() {
-        return this.keys;
+        return this.keyPresses;
     }
 
 }
