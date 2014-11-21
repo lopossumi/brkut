@@ -34,18 +34,14 @@ public class Engine extends Thread {
 	 * Update the game arena.
 	 */
 	public void update() {
-            //Do 10 cycles of logic per frame.
-            for (int i=0; i<10; i++){
-                GameStatus s = arena.step();
-                if (s == GameStatus.HIT){
+                arena.step(this.gui.input().update());
+                if(arena.getStatus()==GameStatus.HIT)
                     try {
-                        sounds.hit();
-                    } catch (Exception ex) {
-                        Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                        this.sounds.hit();
+                } catch (Exception ex) {
+                    Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-	}
+        }
 
 	/**
 	 * Draw updated game arena on screen.

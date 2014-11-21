@@ -23,7 +23,7 @@ public class ArenaTest {
         
         // After 1000 steps, we should have hit something. Anything.
         for(int i=0; i<1000; i++){
-            instance.step();
+            instance.step(new boolean[2]);
         }
         assertTrue(instance.getScore()>0);
     }
@@ -48,7 +48,7 @@ public class ArenaTest {
         System.out.println("getBricks");
         Arena instance = new Arena();
         int expResult = 60;
-        HashSet<Brick> result = instance.getBricks();
+        HashSet<GameObject> result = instance.getBricks();
         assertEquals(expResult, result.size());
     }
 

@@ -12,6 +12,7 @@ public abstract class GameObject {
     private double y;
     private double width;
     private double height;
+    private double maxSpeed = 20;
 
     // Speed components
     private double vx;
@@ -85,6 +86,10 @@ public abstract class GameObject {
      */
     public void accelerateX(double amount) {
         this.vx += amount;
+        if (this.vx > this.maxSpeed)
+            this.vx = this.maxSpeed;
+        if (this.vx < -this.maxSpeed)
+            this.vx = -this.maxSpeed;
     }
 
     /**
@@ -130,5 +135,15 @@ public abstract class GameObject {
 
     public Color getColor() {
         return this.color;
+    }
+    
+    public void damage(int amount){
+    }
+
+    boolean isAlive() {
+        return true;
+    }
+    public void decelerate(){
+        this.vx=this.vx/2;
     }
 }
