@@ -10,6 +10,7 @@ public class Ball extends GameObject {
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.color = Color.WHITE;
+	this.maxSpeed = 10;
     }
 
     public void bounceHorizontal() {

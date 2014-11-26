@@ -12,7 +12,7 @@ public abstract class GameObject {
     private double y;
     private double width;
     private double height;
-    private double maxSpeed = 20;
+    double maxSpeed;
 
     // Speed components
     private double vx;
@@ -26,6 +26,7 @@ public abstract class GameObject {
         this.height = height;
         this.vx = 0;
         this.vy = 0;
+	this.maxSpeed = 0;
     }
 
     public double getX() {
@@ -99,6 +100,10 @@ public abstract class GameObject {
      */
     public void accelerateY(double amount) {
         this.vy += amount;
+        if (this.vy > this.maxSpeed)
+            this.vy = this.maxSpeed;
+        if (this.vy < -this.maxSpeed)
+            this.vy = -this.maxSpeed;
     }
 
     /**
@@ -112,26 +117,6 @@ public abstract class GameObject {
         this.accelerateY(amountY);
     }
 
-    /**
-     * Checks collision between two objects (this and the other).
-     *
-     * @param other the second object
-     * @return -1 for vertical collision, 1 for horizontal, 0 for no collision.
-     * For corner cases the default is vertical collision.
-     */
-    public int collision(GameObject other) {
-        double xOverlapAmount = -Math.abs(this.getX() - other.getX()) + (this.getWidth() + other.getWidth()) / 2;
-        double yOverlapAmount = -Math.abs(this.getY() - other.getY()) + (this.getHeight() + other.getHeight()) / 2;
-
-        // No collision (overlap <= 0 on either axis)
-        if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
-            return 0;
-        } else if (xOverlapAmount >= yOverlapAmount) {
-            return -1;
-        } else {
-            return 1;
-        }
-    }
 
     public Color getColor() {
         return this.color;
@@ -144,6 +129,6 @@ public abstract class GameObject {
         return true;
     }
     public void decelerate(){
-        this.vx=this.vx/2;
+        this.vx=this.vx*0.9;
     }
 }

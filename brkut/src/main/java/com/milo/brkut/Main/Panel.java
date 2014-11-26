@@ -34,11 +34,12 @@ public class Panel extends JPanel {
 
     public void drawGameObject(GameObject o, Graphics g) {
         g.setColor(o.getColor());
-        g.fillRect(
+        g.fill3DRect(
                 (int) (o.getX()-o.getWidth()/2),
                 (int) (o.getY()-o.getHeight()/2),
                 (int) o.getWidth(),
-                (int) o.getHeight());
+                (int) o.getHeight(),
+		true);
     }
 
     private void drawScore(Graphics g) {
