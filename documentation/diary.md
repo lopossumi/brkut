@@ -15,3 +15,6 @@
 |2014-11-19 | 2.0   | Collision detection refactored, keyboard input first proto     |
 |2014-11-20 | 2.0   | Better input handling                                          |
 |2014-11-21 | 2.0   | Soundtest merge, pit report update                             |
+|2014-11-26 | 4.0   | Better physics all over                                        |
+
+
