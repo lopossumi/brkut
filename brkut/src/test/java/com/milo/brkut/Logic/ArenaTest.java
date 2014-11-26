@@ -1,6 +1,7 @@
 package com.milo.brkut.Logic;
 
 import java.util.HashSet;
+import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,8 +23,9 @@ public class ArenaTest {
         Arena instance = new Arena();
         
         // After 1000 steps, we should have hit something. Anything.
-        for(int i=0; i<1000; i++){
-            instance.step(new boolean[2]);
+	instance.getBall().setVy(-5);
+	for(int i=0; i<1000; i++){
+            instance.step(new boolean[3]);
         }
         assertTrue(instance.getScore()>0);
     }
@@ -71,7 +73,7 @@ public class ArenaTest {
     public void testGetBall() {
         System.out.println("getBall");
         Arena instance = new Arena();
-        int expResult = -5;
+        int expResult = 0;
         Ball result = instance.getBall();
         assertEquals(expResult, result.getVy(), 0.0);
     }
