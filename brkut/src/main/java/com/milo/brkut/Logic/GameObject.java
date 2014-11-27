@@ -66,6 +66,10 @@ public abstract class GameObject {
         this.vx = 0;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     public void moveTo(double x, double y) {
         this.x = x;
         this.y = y;
@@ -133,6 +137,10 @@ public abstract class GameObject {
 
     public Color getColor() {
         return this.color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void damage(int amount) {

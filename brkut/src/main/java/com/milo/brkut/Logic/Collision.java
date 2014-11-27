@@ -14,68 +14,86 @@ import java.util.HashSet;
  */
 class Collision {
 
-	static ArrayList<GameObject> getColliders(GameObject ego, HashSet<GameObject> others) {
-		ArrayList<GameObject> colliders = new ArrayList<>();
-		for (GameObject other : others) {
-			if (collision(ego, other) != bounce.NONE) {
-				colliders.add(other);
-			}
-		}
-		return colliders;
-	}
+    /**
+     * Gets a list of collisions between one GameObject and a set of other
+     * objects.
+     *
+     * @param ego The first object (e.g. ball)
+     * @param others Set of other objects (e.g. bricks)
+     * @return List of objects in collision with the first parameter.
+     */
+    static ArrayList<GameObject> getColliders(GameObject ego, HashSet<GameObject> others) {
+        ArrayList<GameObject> colliders = new ArrayList<>();
+        for (GameObject other : others) {
+            if (collision(ego, other) != bounce.NONE) {
+                colliders.add(other);
+            }
+        }
+        return colliders;
+    }
 
-	/**
-	 * Checks collision between two objects (this and the other).
-	 *
-	 * @param other the second object
-	 * @return -1 for vertical collision, 1 for horizontal, 0 for no
-	 * collision. For corner cases the default is vertical collision.
-	 */
-	static bounce collision(GameObject ego, GameObject other) {
-		double xOverlapAmount = -Math.abs(ego.getX() - other.getX()) + (ego.getWidth() + other.getWidth()) / 2;
-		double yOverlapAmount = -Math.abs(ego.getY() - other.getY()) + (ego.getHeight() + other.getHeight()) / 2;
+    /**
+     * Checks collision between two objects (this and the other).
+     *
+     * @param ego the first object
+     * @param other the second object
+     * @return VERTICAL for vertical collision, HORIZONTAL for horizontal, NONE
+     * for no collision. For corner cases the default is vertical collision.
+     */
+    static bounce collision(GameObject ego, GameObject other) {
+        double xOverlapAmount = xOverlap(ego, other);
+        double yOverlapAmount = yOverlap(ego, other);
 
-		// No collision (overlap <= 0 on either axis)
-//        if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
-//            return bounce.NONE;
-//        } else if (xOverlapAmount >= yOverlapAmount) {
-//            return bounce.VERTICAL;
-//        } else {
-//            return bounce.HORIZONTAL;
-//        }
-		if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
-			return bounce.NONE;
-		} else if (xOverlapAmount > 0) {
-			return bounce.VERTICAL;
-		} else {
-			return bounce.HORIZONTAL;
+        if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
+            return bounce.NONE;
+        } else if (xOverlapAmount > 0) {
+            return bounce.VERTICAL;
+        } else {
+            return bounce.HORIZONTAL;
 
-		}
-	}
+        }
+    }
 
-	static void clear(GameObject ego, GameObject other) {
-		double xOverlapAmount = -Math.abs(ego.getX() - other.getX()) + (ego.getWidth() + other.getWidth()) / 2;
-		double yOverlapAmount = -Math.abs(ego.getY() - other.getY()) + (ego.getHeight() + other.getHeight()) / 2;
+    /**
+     * Moves an object so that collision state is no longer active.
+     *
+     * @param ego Object to be moved
+     * @param other Possibly colliding object
+     */
+    static void clear(GameObject ego, GameObject other) {
+        double xOverlapAmount = xOverlap(ego, other);
+        double yOverlapAmount = yOverlap(ego, other);
 
-		if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
+        if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
 
-		} else if (xOverlapAmount > 0) {
-			if (ego.getY() < other.getY()) {
-				ego.move(0, -yOverlapAmount);
-			} else {
-				ego.move(0, yOverlapAmount);
-			}
-		} else if (yOverlapAmount > 0) {
-			if (ego.getX() < other.getX()) {
-				ego.move(0, -xOverlapAmount);
-			} else {
-				ego.move(0, xOverlapAmount);
-			}
-		}
-	}
+        } else if (xOverlapAmount > yOverlapAmount) {
+            if (ego.getY() < other.getY()) {
+                ego.move(0, -yOverlapAmount);
+            } else {
+                ego.move(0, yOverlapAmount);
+            }
+        } else {
+            if (ego.getX() < other.getX()) {
+                ego.move(-xOverlapAmount,0);
+            } else {
+                ego.move(xOverlapAmount,0);
+            }
+        }
+    }
 
-	static enum bounce {
+    static double xOverlap(GameObject ego, GameObject other) {
+        return -Math.abs(ego.getX() - other.getX()) + (ego.getWidth() + other.getWidth()) / 2;
+    }
 
-		NONE, VERTICAL, HORIZONTAL
-	}
+    static double yOverlap(GameObject ego, GameObject other) {
+        return -Math.abs(ego.getY() - other.getY()) + (ego.getHeight() + other.getHeight()) / 2;
+    }
+
+    /**
+     * Bounce types.
+     */
+    static enum bounce {
+
+        NONE, VERTICAL, HORIZONTAL
+    }
 }

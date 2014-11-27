@@ -14,15 +14,17 @@ public class Arena {
     private HashSet<GameObject> bricks;
     private int score;
     private boolean hit;
+    private boolean launchAllowed;
 
     public Arena() {
-        this.playerOne = new Player(100, 500, 100, 10);
+        this.playerOne = new Player(100, 500, 100, 15);
         this.ball = new Ball(100, 480, 10, 10);
         //this.ball.accelerateXY(0.7, -5);
         this.bricks = new HashSet<>();
         addBricks();
         this.score = 0;
         this.hit = false;
+        this.launchAllowed = true;
     }
 
     // TODO: This is for testing and should be rewritten to use some sort of 
@@ -30,8 +32,8 @@ public class Arena {
     private void addBricks() {
         for (int y = 0; y < 5; y++) {
             for (int x = 0; x < 12; x++) {
-                Brick brick = new Brick(80 + x*60, 50+y*50, 50,30);
-                brick.setColor(new Color(20*x, 250-20*y, 0));
+                Brick brick = new Brick(80 + x * 60, 70 + y * 50, 50, 30);
+                brick.setColor(new Color(20 * x, 250 - 20 * y, 0));
                 this.bricks.add(brick);
             }
         }
@@ -46,7 +48,6 @@ public class Arena {
 
         moveBall(input);
         movePlayerOne(input);
-        ball.move();
 
         // Check collisions with all the bricks, give points and bounce
         ArrayList<GameObject> collisions = Collision.getColliders(this.ball, this.bricks);
@@ -58,7 +59,7 @@ public class Arena {
             switch (Collision.collision(this.ball, brick)) {
                 case VERTICAL:
                     ball.bounceVertical();
-                    //ball.accelerateX((this.ball.getX()-this.playerOne.getX())/15);
+                    ball.accelerateX((this.ball.getX() - brick.getX()) / 15);
                     break;
                 case HORIZONTAL:
                     ball.bounceHorizontal();
@@ -76,7 +77,7 @@ public class Arena {
         switch (Collision.collision(this.ball, this.playerOne)) {
             case VERTICAL:
                 ball.bounceVertical();
-                ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 15);
+                ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 30);
                 break;
             case HORIZONTAL:
                 ball.bounceHorizontal();
@@ -94,7 +95,7 @@ public class Arena {
         if (ball.getY() < 0) {
             ball.bounceVertical();
         }
-        if (ball.getY() > 600){
+        if (ball.getY() > 600) {
             playerOne.kill();
         }
     }
@@ -139,17 +140,39 @@ public class Arena {
         }
         playerOne.move();
         playerOne.decelerate();
-    }
 
-    private void moveBall(boolean[] input) {
-        if (input[KeypressEnum.SPACE.getValue()]) {
-            ball.accelerateXY(0.6, -5);
+        //No wall clipping allowed: stop paddle, move back to playing field
+        if (playerOne.getX() - playerOne.getWidth() / 2 < 0) {
+            playerOne.stop();
+            playerOne.moveTo(0 + playerOne.getWidth() / 2, playerOne.getY());
+        } else if (playerOne.getX() + playerOne.getWidth() / 2 > 800) {
+            playerOne.stop();
+            playerOne.moveTo(800 - playerOne.getWidth() / 2, playerOne.getY());
         }
     }
 
+    /**
+     * Move the ball at its internal speed. If launch is allowed, check if space
+     * bar is pressed and launch ball.
+     * @param input 
+     */
+    private void moveBall(boolean[] input) {
+        if (input[KeypressEnum.SPACE.getValue()]
+                && this.launchAllowed == true
+                && Math.abs(this.ball.getX() - this.playerOne.getX()) < this.playerOne.getWidth() / 2) {
+            ball.accelerateXY((this.ball.getX() - this.playerOne.getX()) / 15, -5);
+            this.launchAllowed = false;
+        }
+        ball.move();
+    }
+
+    /**
+     * Reset playing arena after death. Set paddle and ball position, allow launch.
+     */
     public void reset() {
         this.playerOne.respawn();
         this.ball.stop();
         this.ball.moveTo(100, 480);
+        this.launchAllowed = true;
     }
 }

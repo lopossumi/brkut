@@ -1,6 +1,10 @@
 package com.milo.brkut.Main;
 
 import com.milo.brkut.Logic.*;
+import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,10 +28,13 @@ public class Engine extends Thread {
     @Override
     public void run() {
         while (this.running) {
-            update();
             draw();
-            hold(1000/60);
+            hold(1000 / 60);
+            update();
         }
+        
+        // Close window
+        gui.getFrame().dispatchEvent(new WindowEvent(gui.getFrame(), WindowEvent.WINDOW_CLOSING));
     }
 
     /**
@@ -38,10 +45,10 @@ public class Engine extends Thread {
         if (arena.getStatus() == GameStatus.HIT) {
             this.sounds.hit();
         }
-        if (arena.getStatus() == GameStatus.DIED){
+        if (arena.getStatus() == GameStatus.DIED) {
             doDeath();
         }
-        if (arena.getStatus() == GameStatus.GAMEOVER){
+        if (arena.getStatus() == GameStatus.GAMEOVER) {
             doGameOver();
         }
     }
@@ -53,6 +60,9 @@ public class Engine extends Thread {
         gui.draw();
     }
 
+    /**
+     * Stop the engine.
+     */
     public void close() {
         running = false;
     }
@@ -69,15 +79,43 @@ public class Engine extends Thread {
         }
     }
 
+    /**
+     * Play death sound, animate paddle dying, reset.
+     */
     private void doDeath() {
         this.sounds.died();
-        hold(2000);
+        animateDeath();
+        hold(500);
         this.arena.reset();
     }
 
+    /**
+     * Play game over sound, animate paddle dying. 
+     * TODO:
+     * - Show high score
+     * - Show game over text
+     */
     private void doGameOver() {
         this.sounds.died();
-        hold(2000);
-        this.running = false;
+                animateDeath();
+
+        hold(500);
+        close();
+    }
+
+    /**
+     * Play death animation. Paddle turns red and diminishes in size.
+     */
+    private void animateDeath() {
+        Player pOne = this.arena.getPlayerOne();
+        for (int i = 0; i < 100; i++) {
+            pOne.setColor(new Color(255, 200 - i * 2, 200 - i * 2));
+            pOne.setWidth(pOne.getWidth() * 0.95);
+            hold(1000 / 60);
+            draw();
+        }
+        hold(500);
+        pOne.setWidth(100);
+        pOne.setColor(Color.WHITE);
     }
 }
