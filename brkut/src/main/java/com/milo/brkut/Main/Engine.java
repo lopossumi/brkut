@@ -36,21 +36,13 @@ public class Engine extends Thread {
     public void update() {
         arena.step(this.gui.input().update());
         if (arena.getStatus() == GameStatus.HIT) {
-            playHitSound();
+            this.sounds.hit();
         }
         if (arena.getStatus() == GameStatus.DIED){
-            resetArena();
+            doDeath();
         }
         if (arena.getStatus() == GameStatus.GAMEOVER){
-            gameOver();
-        }
-    }
-
-    private void playHitSound() {
-        try {
-            this.sounds.hit();
-        } catch (Exception ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            doGameOver();
         }
     }
 
@@ -77,14 +69,14 @@ public class Engine extends Thread {
         }
     }
 
-    private void resetArena() {
-        playHitSound();
+    private void doDeath() {
+        this.sounds.died();
         hold(2000);
         this.arena.reset();
     }
 
-    private void gameOver() {
-        playHitSound();
+    private void doGameOver() {
+        this.sounds.died();
         hold(2000);
         this.running = false;
     }

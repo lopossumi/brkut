@@ -9,13 +9,23 @@ import sun.audio.*;
  */
 public class SoundEngine {
 
-    public SoundEngine(){
+    public SoundEngine() {
     }
 
-    public void hit() throws Exception {
-        String hit = "media/hit1.wav";
-        InputStream in = new FileInputStream(hit);
-        AudioStream audio = new AudioStream(in);
-        AudioPlayer.player.start(audio);
+    public void hit() {
+        play("media/hit1.wav");
+    }
+
+    public void died() {
+        play("media/died.wav");
+    }
+
+    public void play(String sample) {
+        try {
+            InputStream in = new FileInputStream(sample);
+            AudioStream audio = new AudioStream(in);
+            AudioPlayer.player.start(audio);
+        } catch (Exception ex) {
+        }
     }
 }
