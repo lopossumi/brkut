@@ -26,8 +26,15 @@ public class Player extends GameObject {
         this.lives++;
     }
 
-    public void removeLife() {
+    public void kill() {
+        this.alive = false;
         this.lives--;
+    }
+    
+    public void respawn(){
+        this.alive = true;
+        this.stop();
+        this.moveTo(100, 500);
     }
 
     boolean isAlive() {

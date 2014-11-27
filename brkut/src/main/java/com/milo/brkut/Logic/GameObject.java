@@ -26,7 +26,7 @@ public abstract class GameObject {
         this.height = height;
         this.vx = 0;
         this.vy = 0;
-	this.maxSpeed = 0;
+        this.maxSpeed = 0;
     }
 
     public double getX() {
@@ -61,6 +61,16 @@ public abstract class GameObject {
         this.vy = vy;
     }
 
+    public void stop() {
+        this.vy = 0;
+        this.vx = 0;
+    }
+
+    public void moveTo(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * Moves the object (dx,dy) units.
      *
@@ -87,10 +97,12 @@ public abstract class GameObject {
      */
     public void accelerateX(double amount) {
         this.vx += amount;
-        if (this.vx > this.maxSpeed)
+        if (this.vx > this.maxSpeed) {
             this.vx = this.maxSpeed;
-        if (this.vx < -this.maxSpeed)
+        }
+        if (this.vx < -this.maxSpeed) {
             this.vx = -this.maxSpeed;
+        }
     }
 
     /**
@@ -100,10 +112,12 @@ public abstract class GameObject {
      */
     public void accelerateY(double amount) {
         this.vy += amount;
-        if (this.vy > this.maxSpeed)
+        if (this.vy > this.maxSpeed) {
             this.vy = this.maxSpeed;
-        if (this.vy < -this.maxSpeed)
+        }
+        if (this.vy < -this.maxSpeed) {
             this.vy = -this.maxSpeed;
+        }
     }
 
     /**
@@ -117,18 +131,18 @@ public abstract class GameObject {
         this.accelerateY(amountY);
     }
 
-
     public Color getColor() {
         return this.color;
     }
-    
-    public void damage(int amount){
+
+    public void damage(int amount) {
     }
 
     boolean isAlive() {
         return true;
     }
-    public void decelerate(){
-        this.vx=this.vx*0.9;
+
+    public void decelerate() {
+        this.vx = this.vx * 0.9;
     }
 }

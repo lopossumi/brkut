@@ -33,9 +33,9 @@ public class PlayerTest {
         Player instance = new Player(10,10,10,10);
         instance.addLife();
         instance.addLife();
-        instance.removeLife();
-        instance.removeLife();
-        instance.removeLife();
+        instance.kill();
+        instance.kill();
+        instance.kill();
         assertEquals(instance.getLives(), 2);
 
     }

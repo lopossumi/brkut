@@ -43,4 +43,8 @@ public class Brick extends GameObject {
     public int getHitpoints() {
         return this.hitpoints;
     }
+    
+    public void setColor(Color color){
+        this.color = color;
+    }
 }
