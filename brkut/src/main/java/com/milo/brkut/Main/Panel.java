@@ -43,6 +43,7 @@ public class Panel extends JPanel {
         drawScore(g);
         drawLives(g);
         drawMultiplier(g);
+        drawHighscore(g);
 
         // Draw GameObjects
         for (GameObject brick : arena.getBricks()) {
@@ -69,21 +70,28 @@ public class Panel extends JPanel {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
         char[] score = ("SCORE  " + String.valueOf(arena.getScore())).toCharArray();
-        g.drawChars(score, 0, score.length, 30, 30);
+        g.drawChars(score, 0, score.length, 300, 30);
     }
 
     private void drawLives(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
         char[] lives = ("LIVES  " + String.valueOf(arena.getPlayerOne().getLives())).toCharArray();
-        g.drawChars(lives, 0, lives.length, 300, 30);
+        g.drawChars(lives, 0, lives.length, 30, 30);
     }
 
     private void drawMultiplier(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
-        char[] multiplier = ("MULTIPLIER  " + String.format("%.2g%n",arena.getMultiplier())+"x").toCharArray();
-        g.drawChars(multiplier, 0, multiplier.length, 600, 30);
+        char[] multiplier = ("BONUS  " + String.format("%.2g%n", arena.getMultiplier()) + "x").toCharArray();
+        g.drawChars(multiplier, 0, multiplier.length, 150, 30);
+    }
+
+    private void drawHighscore(Graphics g) {
+        g.setFont(new Font("default", Font.BOLD, 16));
+        g.setColor(Color.GREEN);
+        char[] highscore = ("HIGH SCORE  " + String.valueOf(arena.getHighscore())).toCharArray();
+        g.drawChars(highscore, 0, highscore.length, 500, 30);
     }
 
     private void drawStart(Graphics g) {

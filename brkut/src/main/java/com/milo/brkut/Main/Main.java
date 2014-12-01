@@ -8,12 +8,14 @@ import javax.swing.SwingUtilities;
  */
 public class Main {
 
-	public static void main(String[] args) {
-		Arena arena = new Arena();
-                GUI gui = new GUI(arena);
-                Engine engine = new Engine(gui, arena);
-                SwingUtilities.invokeLater(gui);
+    public static void main(String[] args) {
+        Arena arena;
+        arena = new Arena(HighscoreIO.read());
+        GUI gui = new GUI(arena);
+        Engine engine = new Engine(gui, arena);
+        SwingUtilities.invokeLater(gui);
 
-                engine.start();
-	}
+        engine.start();
+        HighscoreIO.update(arena.getScore());
+    }
 }

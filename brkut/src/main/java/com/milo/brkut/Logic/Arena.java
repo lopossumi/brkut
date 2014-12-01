@@ -1,6 +1,7 @@
 package com.milo.brkut.Logic;
 
 import com.milo.brkut.Main.Config;
+import com.milo.brkut.Main.HighscoreIO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,11 +16,12 @@ public class Arena {
     private HashSet<GameObject> bricks;
     private int score;
     private double multiplier;
+    private int highScore;
 
     private boolean hit;
     private boolean launchAllowed;
 
-    public Arena() {
+    public Arena(int highScore) {
         this.playerOne = new Player(
                 Config.PLAYER_START_X,
                 Config.PLAYER_START_Y,
@@ -33,9 +35,10 @@ public class Arena {
                 Config.BALL_HEIGHT);
 
         this.bricks = new HashSet<>();
-        addBricks(5,12);
+        addBricks(5, 12);
 
         this.score = 0;
+        this.highScore = highScore;
         this.multiplier = 1.0;
 
         this.hit = false;
@@ -84,6 +87,9 @@ public class Arena {
             return GameStatusEnum.HIT;
         } else if (bricks.isEmpty()) {
             return GameStatusEnum.WON;
+        } else if (playerOne.getLives() == 0
+                && this.score > this.highScore) {
+            return GameStatusEnum.HIGHSCORE;
         } else if (playerOne.getLives() == 0) {
             return GameStatusEnum.GAMEOVER;
         } else if (!playerOne.isAlive()) {
@@ -201,8 +207,8 @@ public class Arena {
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < columns; x++) {
                 Brick brick = new Brick(
-                        x * Config.ARENA_WIDTH / columns+30,
-                        y * (Config.ARENA_HEIGHT/3) / rows+60,
+                        x * Config.ARENA_WIDTH / columns + 30,
+                        y * (Config.ARENA_HEIGHT / 3) / rows + 60,
                         50,
                         30);
                 brick.setColor(new Color(20 * x, 250 - 20 * y, 0));
@@ -234,5 +240,9 @@ public class Arena {
 
     public int getScore() {
         return this.score;
+    }
+
+    public int getHighscore() {
+        return this.highScore;
     }
 }

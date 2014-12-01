@@ -55,7 +55,7 @@ public class EngineTest {
     @Test
     public void testClose() {
         System.out.println("close");
-        Arena a = new Arena();
+        Arena a = new Arena(0);
         GUI g = new GUI(a);
         Engine instance = new Engine(g,a);
         instance.close();

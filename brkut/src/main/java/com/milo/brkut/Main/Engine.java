@@ -32,7 +32,7 @@ public class Engine extends Thread {
             hold(1000 / 60);
             update();
         }
-        
+
         // Close window
         gui.getFrame().dispatchEvent(new WindowEvent(gui.getFrame(), WindowEvent.WINDOW_CLOSING));
     }
@@ -50,6 +50,15 @@ public class Engine extends Thread {
         }
         if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
             doGameOver();
+        }
+        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
+            doGameOver();
+        }
+        if (arena.getStatus() == GameStatusEnum.HIGHSCORE) {
+            doHighScore();
+        }
+        if (arena.getStatus() == GameStatusEnum.WON){
+            doWin();
         }
     }
 
@@ -90,15 +99,25 @@ public class Engine extends Thread {
     }
 
     /**
-     * Play game over sound, animate paddle dying. 
-     * TODO:
-     * - Show high score
-     * - Show game over text
+     * Play game over sound, animate paddle dying. TODO: - Show high score -
+     * Show game over text
      */
     private void doGameOver() {
         this.sounds.died();
-                animateDeath();
+        animateDeath();
         hold(500);
+        close();
+    }
+
+    /**
+     * Play game over sound, animate paddle dying. TODO: - Show high score -
+     * Show game over text
+     */
+    private void doHighScore() {
+        this.sounds.died();
+        animateDeath();
+        hold(500);
+        HighscoreIO.update(arena.getScore());
         close();
     }
 
@@ -110,7 +129,7 @@ public class Engine extends Thread {
         for (int i = 0; i < 100; i++) {
             pOne.setColor(new Color(255, 200 - i * 2, 200 - i * 2));
             pOne.setWidth(pOne.getWidth() * 0.95);
-            pOne.setHeight(pOne.getHeight()+10-i);
+            pOne.setHeight(pOne.getHeight() + 10 - i);
             hold(1000 / 60);
             draw();
         }
@@ -118,5 +137,11 @@ public class Engine extends Thread {
         pOne.setWidth(Config.PLAYER_WIDTH);
         pOne.setHeight(Config.PLAYER_HEIGHT);
         pOne.setColor(Color.WHITE);
+    }
+
+    private void doWin() {
+        draw();
+        hold(2000);
+        close();
     }
 }

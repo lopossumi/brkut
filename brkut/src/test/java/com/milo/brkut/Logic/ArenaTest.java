@@ -19,7 +19,7 @@ public class ArenaTest {
     @Test
     public void testStep() {
         System.out.println("step");
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
 
         // After 1000 steps, we should have hit something. Anything.
         instance.getBall().setVy(-5);
@@ -35,7 +35,7 @@ public class ArenaTest {
     @Test
     public void testGetStatus() {
         System.out.println("getStatus");
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
         GameStatusEnum expResult = GameStatusEnum.START;
         GameStatusEnum result = instance.getStatus();
         assertEquals(expResult, result);
@@ -47,7 +47,7 @@ public class ArenaTest {
     @Test
     public void testGetBricks() {
         System.out.println("getBricks");
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
         int expResult = 60;
         HashSet<GameObject> result = instance.getBricks();
         assertEquals(expResult, result.size());
@@ -59,7 +59,7 @@ public class ArenaTest {
     @Test
     public void testGetPlayerOne() {
         System.out.println("getPlayerOne");
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
         int expResult = 3;
         Player result = instance.getPlayerOne();
         assertEquals(expResult, result.getLives());
@@ -71,7 +71,7 @@ public class ArenaTest {
     @Test
     public void testGetBall() {
         System.out.println("getBall");
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
         int expResult = 0;
         Ball result = instance.getBall();
         assertEquals(expResult, result.getVy(), 0.0);
@@ -82,7 +82,7 @@ public class ArenaTest {
      */
     @Test
     public void testHandleCollisionWithPlayerOne() {
-        Arena instance = new Arena();
+        Arena instance = new Arena(0);
         Ball ball = instance.getBall();
         Player pOne = instance.getPlayerOne();
         
