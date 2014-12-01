@@ -1,5 +1,6 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Main.Config;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,14 +20,26 @@ public class Arena {
     private boolean launchAllowed;
 
     public Arena() {
-        this.playerOne = new Player(100, 500, 100, 15);
-        this.ball = new Ball(100, 480, 10, 10);
+        this.playerOne = new Player(
+                Config.PLAYER_START_X,
+                Config.PLAYER_START_Y,
+                Config.PLAYER_WIDTH,
+                Config.PLAYER_HEIGHT);
+
+        this.ball = new Ball(
+                Config.BALL_START_X,
+                Config.BALL_START_Y,
+                Config.BALL_WIDTH,
+                Config.BALL_HEIGHT);
+
         this.bricks = new HashSet<>();
-        addBricks();
+        addBricks(5,12);
+
         this.score = 0;
+        this.multiplier = 1.0;
+
         this.hit = false;
         this.launchAllowed = true;
-        this.multiplier = 1;
     }
 
     /**
@@ -47,13 +60,13 @@ public class Arena {
 
         handleCollisionWithPlayerOne();
 
-        if (ball.getX() < 0 || ball.getX() > 800) {
+        if (ball.getX() < 0 || ball.getX() > Config.ARENA_WIDTH) {
             ball.bounceHorizontal();
         }
         if (ball.getY() < 0) {
             ball.bounceVertical();
         }
-        if (ball.getY() > 600) {
+        if (ball.getY() > Config.ARENA_HEIGHT) {
             playerOne.kill();
         }
     }
@@ -99,9 +112,9 @@ public class Arena {
         if (playerOne.getX() - playerOne.getWidth() / 2 < 0) {
             playerOne.stop();
             playerOne.moveTo(0 + playerOne.getWidth() / 2, playerOne.getY());
-        } else if (playerOne.getX() + playerOne.getWidth() / 2 > 800) {
+        } else if (playerOne.getX() + playerOne.getWidth() / 2 > Config.ARENA_WIDTH) {
             playerOne.stop();
-            playerOne.moveTo(800 - playerOne.getWidth() / 2, playerOne.getY());
+            playerOne.moveTo(Config.ARENA_WIDTH - playerOne.getWidth() / 2, playerOne.getY());
         }
     }
 
@@ -157,7 +170,7 @@ public class Arena {
         switch (Collision.collision(this.ball, this.playerOne)) {
             case VERTICAL:
                 ball.bounceVertical();
-                ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 30);
+                ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 20);
                 this.multiplier = 1;
                 Collision.clear(ball, this.playerOne);
                 break;
@@ -176,18 +189,22 @@ public class Arena {
      * launch.
      */
     public void reset() {
-        this.playerOne.respawn();
+        this.playerOne.respawn(Config.PLAYER_START_X, Config.PLAYER_START_Y);
         this.ball.stop();
-        this.ball.moveTo(100, 480);
+        this.ball.moveTo(Config.BALL_START_X, Config.BALL_START_Y);
         this.launchAllowed = true;
     }
 
     // TODO: This is for testing and should be rewritten to use some sort of 
     // level generation thingie.
-    private void addBricks() {
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 12; x++) {
-                Brick brick = new Brick(80 + x * 60, 70 + y * 50, 50, 30);
+    private void addBricks(int rows, int columns) {
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < columns; x++) {
+                Brick brick = new Brick(
+                        x * Config.ARENA_WIDTH / columns+30,
+                        y * (Config.ARENA_HEIGHT/3) / rows+60,
+                        50,
+                        30);
                 brick.setColor(new Color(20 * x, 250 - 20 * y, 0));
                 this.bricks.add(brick);
             }

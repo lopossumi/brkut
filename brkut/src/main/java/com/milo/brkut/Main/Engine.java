@@ -103,18 +103,20 @@ public class Engine extends Thread {
     }
 
     /**
-     * Play death animation. Paddle turns red and diminishes in size.
+     * Play death animation. Paddle turns red and changes shape.
      */
     private void animateDeath() {
         Player pOne = this.arena.getPlayerOne();
         for (int i = 0; i < 100; i++) {
             pOne.setColor(new Color(255, 200 - i * 2, 200 - i * 2));
             pOne.setWidth(pOne.getWidth() * 0.95);
+            pOne.setHeight(pOne.getHeight()+10-i);
             hold(1000 / 60);
             draw();
         }
         hold(500);
-        pOne.setWidth(100);
+        pOne.setWidth(Config.PLAYER_WIDTH);
+        pOne.setHeight(Config.PLAYER_HEIGHT);
         pOne.setColor(Color.WHITE);
     }
 }

@@ -1,5 +1,6 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Main.Config;
 import java.awt.Color;
 
 /**
@@ -12,7 +13,7 @@ public class Brick extends GameObject {
 
     public Brick(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.hitpoints = 2;
+        this.hitpoints = Config.BRICK_HITPOINTS;
         this.color = Color.GREEN;
         this.alive = true;
     }

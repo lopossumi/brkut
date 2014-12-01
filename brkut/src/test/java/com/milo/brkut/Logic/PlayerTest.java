@@ -1,5 +1,6 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Main.Config;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -45,10 +46,10 @@ public class PlayerTest {
         instance.setVx(10);
         instance.kill();
         assertTrue(!instance.isAlive());
-        instance.respawn();
+        instance.respawn(Config.PLAYER_START_X, Config.PLAYER_START_Y);
         assertTrue(instance.isAlive());
-        assertEquals(100, instance.getX(),0.0);
-        assertEquals(500, instance.getY(),0.0);
+        assertEquals(Config.PLAYER_START_X, instance.getX(),0.0);
+        assertEquals(Config.PLAYER_START_Y, instance.getY(),0.0);
         assertEquals(0, instance.getVx(),0.0);
     }
 }

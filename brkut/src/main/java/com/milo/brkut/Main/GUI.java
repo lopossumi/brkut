@@ -17,8 +17,8 @@ public class GUI implements Runnable {
     private Panel window;
     private UserInput input;
     
-    private final int WIDTH = 800;
-    private final int HEIGHT = 600;
+    private final int WIDTH = Config.ARENA_WIDTH;
+    private final int HEIGHT = Config.ARENA_HEIGHT;
 
     public GUI(Arena arena) {
         this.arena = arena;

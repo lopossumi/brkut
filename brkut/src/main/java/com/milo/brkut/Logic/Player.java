@@ -1,12 +1,13 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Main.Config;
 import java.awt.Color;
 
 /**
  * @author milo
  */
 public class Player extends GameObject {
-
+  
     private int lives;
     private boolean alive;
 
@@ -15,7 +16,7 @@ public class Player extends GameObject {
         this.lives = 3;
         this.color = Color.WHITE;
         this.alive = true;
-	this.setMaxSpeed(10);
+	this.setMaxSpeed(Config.PLAYER_MAXSPEED);
     }
 
     public int getLives() {
@@ -31,10 +32,10 @@ public class Player extends GameObject {
         this.lives--;
     }
     
-    public void respawn(){
+    public void respawn(double x, double y){
         this.alive = true;
         this.stop();
-        this.moveTo(100, 500);
+        this.moveTo(x, y);
     }
 
     boolean isAlive() {
