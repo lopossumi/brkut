@@ -37,6 +37,18 @@ public class PlayerTest {
         instance.kill();
         instance.kill();
         assertEquals(instance.getLives(), 2);
-
+    }
+    
+    @Test
+    public void testSpawn() {
+        Player instance = new Player(10,10,10,10);
+        instance.setVx(10);
+        instance.kill();
+        assertTrue(!instance.isAlive());
+        instance.respawn();
+        assertTrue(instance.isAlive());
+        assertEquals(100, instance.getX(),0.0);
+        assertEquals(500, instance.getY(),0.0);
+        assertEquals(0, instance.getVx(),0.0);
     }
 }

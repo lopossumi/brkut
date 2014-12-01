@@ -15,7 +15,7 @@ public class Player extends GameObject {
         this.lives = 3;
         this.color = Color.WHITE;
         this.alive = true;
-	this.maxSpeed = 10;
+	this.setMaxSpeed(10);
     }
 
     public int getLives() {

@@ -4,6 +4,6 @@ package com.milo.brkut.Logic;
  *
  * @author milo
  */
-public enum GameStatus {
+public enum GameStatusEnum {
 	START, RUNNING, WON, DIED, GAMEOVER, HIT;
 }

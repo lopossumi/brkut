@@ -12,11 +12,12 @@ public abstract class GameObject {
     private double y;
     private double width;
     private double height;
-    double maxSpeed;
 
     // Speed components
     private double vx;
     private double vy;
+    private double maxSpeed;
+
     Color color;
 
     public GameObject(double x, double y, double width, double height) {
@@ -29,45 +30,12 @@ public abstract class GameObject {
         this.maxSpeed = 0;
     }
 
-    public double getX() {
-        return this.x;
-    }
-
-    public double getY() {
-        return this.y;
-    }
-
-    public double getWidth() {
-        return this.width;
-    }
-
-    public double getHeight() {
-        return this.height;
-    }
-
-    public double getVx() {
-        return this.vx;
-    }
-
-    public double getVy() {
-        return this.vy;
-    }
-
-    public void setVx(double vx) {
-        this.vx = vx;
-    }
-
-    public void setVy(double vy) {
-        this.vy = vy;
-    }
-
+    /**
+     * Sets the speed to zero on both axes.
+     */
     public void stop() {
         this.vy = 0;
         this.vx = 0;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
     }
 
     public void moveTo(double x, double y) {
@@ -152,5 +120,62 @@ public abstract class GameObject {
 
     public void decelerate() {
         this.vx = this.vx * 0.9;
+    }
+
+    // Getters and setters
+    public double getX() {
+        return this.x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getWidth() {
+        return this.width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return this.height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getVx() {
+        return this.vx;
+    }
+
+    public void setVx(double vx) {
+        this.vx = vx;
+    }
+
+    public double getVy() {
+        return this.vy;
+    }
+
+    public void setVy(double vy) {
+        this.vy = vy;
+    }
+
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 }

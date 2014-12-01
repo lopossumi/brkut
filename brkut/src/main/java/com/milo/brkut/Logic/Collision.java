@@ -46,7 +46,7 @@ class Collision {
 
         if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
             return bounce.NONE;
-        } else if (xOverlapAmount > 0) {
+        } else if (xOverlapAmount > yOverlapAmount) {
             return bounce.VERTICAL;
         } else {
             return bounce.HORIZONTAL;

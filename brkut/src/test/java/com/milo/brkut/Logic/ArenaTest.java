@@ -1,7 +1,6 @@
 package com.milo.brkut.Logic;
 
 import java.util.HashSet;
-import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,10 +9,10 @@ import static org.junit.Assert.*;
  * @author milo
  */
 public class ArenaTest {
-    
+
     public ArenaTest() {
     }
-    
+
     /**
      * Test of step method, of class Arena.
      */
@@ -21,13 +20,13 @@ public class ArenaTest {
     public void testStep() {
         System.out.println("step");
         Arena instance = new Arena();
-        
+
         // After 1000 steps, we should have hit something. Anything.
-	instance.getBall().setVy(-5);
-	for(int i=0; i<1000; i++){
+        instance.getBall().setVy(-5);
+        for (int i = 0; i < 1000; i++) {
             instance.step(new boolean[3]);
         }
-        assertTrue(instance.getScore()>0);
+        assertTrue(instance.getScore() > 0);
     }
 
     /**
@@ -37,8 +36,8 @@ public class ArenaTest {
     public void testGetStatus() {
         System.out.println("getStatus");
         Arena instance = new Arena();
-        GameStatus expResult = GameStatus.RUNNING;
-        GameStatus result = instance.getStatus();
+        GameStatusEnum expResult = GameStatusEnum.START;
+        GameStatusEnum result = instance.getStatus();
         assertEquals(expResult, result);
     }
 
@@ -77,5 +76,42 @@ public class ArenaTest {
         Ball result = instance.getBall();
         assertEquals(expResult, result.getVy(), 0.0);
     }
-    
+
+    /**
+     * Test of getBall method, of class Arena.
+     */
+    @Test
+    public void testHandleCollisionWithPlayerOne() {
+        Arena instance = new Arena();
+        Ball ball = instance.getBall();
+        Player pOne = instance.getPlayerOne();
+        
+        //Vertical
+        instance.setMultiplier(2);
+        ball.moveTo(60, 490);
+        ball.setVx(0);
+        ball.setVy(5);
+        pOne.moveTo(100, 500);
+        instance.handleCollisionWithPlayerOne();
+        assertEquals(1.0, instance.getMultiplier(), 0.0);
+        assertEquals(-5, ball.getVy(), 0.0);
+        
+        // Check if ball Y coordinate and X velocity have changed
+        // (Collision.clear & bounce directional function)
+        assertTrue(ball.getVx()<0);
+        assertTrue(ball.getY() < 490);
+
+        //Horizontal
+        instance.setMultiplier(2);
+        ball.moveTo(46, 500);
+        ball.setVx(5);
+        ball.setVy(0);
+        instance.handleCollisionWithPlayerOne();
+        assertEquals(1.0, instance.getMultiplier(), 0.0);
+        assertEquals(-5, ball.getVx(), 0.0);
+        assertEquals(1.0, instance.getMultiplier(), 0.0);
+        assertEquals(-5, ball.getVx(), 0.0);
+        assertTrue(ball.getX() < 46);
+    }
+
 }

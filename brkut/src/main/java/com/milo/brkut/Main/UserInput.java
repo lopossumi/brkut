@@ -32,16 +32,6 @@ public class UserInput implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.keyPresses[KeypressEnum.SPACE.getValue()] = true;
 		}
-////
-//		switch (e.getKeyCode()) {
-//			case KeyEvent.VK_LEFT:
-//				this.keyPresses[KeypressEnum.LEFT.getValue()] = true;
-//			case KeyEvent.VK_RIGHT:
-//				this.keyPresses[KeypressEnum.RIGHT.getValue()] = true;
-//			case KeyEvent.VK_SPACE:
-//				this.keyPresses[KeypressEnum.SPACE.getValue()] = true;
-//			default:;
-//		}
 	}
 
 	@Override

@@ -42,13 +42,13 @@ public class Engine extends Thread {
      */
     public void update() {
         arena.step(this.gui.input().update());
-        if (arena.getStatus() == GameStatus.HIT) {
+        if (arena.getStatus() == GameStatusEnum.HIT) {
             this.sounds.hit();
         }
-        if (arena.getStatus() == GameStatus.DIED) {
+        if (arena.getStatus() == GameStatusEnum.DIED) {
             doDeath();
         }
-        if (arena.getStatus() == GameStatus.GAMEOVER) {
+        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
             doGameOver();
         }
     }

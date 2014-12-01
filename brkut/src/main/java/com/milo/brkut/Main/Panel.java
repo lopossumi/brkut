@@ -34,10 +34,10 @@ public class Panel extends JPanel {
         super.paint(g);
         this.setBackground(Color.BLACK);
 
-        if (arena.getStatus() == GameStatus.START) {
+        if (arena.getStatus() == GameStatusEnum.START) {
             drawStart(g);
         }
-        if (arena.getStatus() == GameStatus.GAMEOVER) {
+        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
             drawGameOver(g);
         }
         drawScore(g);
