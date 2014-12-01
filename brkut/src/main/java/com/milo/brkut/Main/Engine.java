@@ -98,7 +98,6 @@ public class Engine extends Thread {
     private void doGameOver() {
         this.sounds.died();
                 animateDeath();
-
         hold(500);
         close();
     }

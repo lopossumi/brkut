@@ -13,18 +13,23 @@ public class Arena {
     private Ball ball;
     private HashSet<GameObject> bricks;
     private int score;
+
+    public double getMultiplier() {
+        return multiplier;
+    }
     private boolean hit;
     private boolean launchAllowed;
+    private double multiplier;
 
     public Arena() {
         this.playerOne = new Player(100, 500, 100, 15);
         this.ball = new Ball(100, 480, 10, 10);
-        //this.ball.accelerateXY(0.7, -5);
         this.bricks = new HashSet<>();
         addBricks();
         this.score = 0;
         this.hit = false;
         this.launchAllowed = true;
+        this.multiplier = 1;
     }
 
     // TODO: This is for testing and should be rewritten to use some sort of 
@@ -53,13 +58,14 @@ public class Arena {
         ArrayList<GameObject> collisions = Collision.getColliders(this.ball, this.bricks);
         if (!collisions.isEmpty()) {
             this.hit = true;
-            this.score += 100;
+            this.score += multiplier*100;
+            this.multiplier += 0.1;
             GameObject brick = collisions.get(0);
 
             switch (Collision.collision(this.ball, brick)) {
                 case VERTICAL:
                     ball.bounceVertical();
-                    ball.accelerateX((this.ball.getX() - brick.getX()) / 15);
+                    //ball.accelerateX((this.ball.getX() - brick.getX()) / 15);
                     break;
                 case HORIZONTAL:
                     ball.bounceHorizontal();
@@ -78,9 +84,13 @@ public class Arena {
             case VERTICAL:
                 ball.bounceVertical();
                 ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 30);
+                this.multiplier = 1;
+                Collision.clear(ball, this.playerOne);
                 break;
             case HORIZONTAL:
                 ball.bounceHorizontal();
+                this.multiplier = 1;
+                Collision.clear(ball, this.playerOne);
                 break;
             default:
                 break;
@@ -101,7 +111,9 @@ public class Arena {
     }
 
     public GameStatus getStatus() {
-        if (this.hit) {
+        if (launchAllowed) {
+            return GameStatus.START;
+        } else if (this.hit) {
             this.hit = false;
             return GameStatus.HIT;
         } else if (bricks.isEmpty()) {
@@ -154,7 +166,8 @@ public class Arena {
     /**
      * Move the ball at its internal speed. If launch is allowed, check if space
      * bar is pressed and launch ball.
-     * @param input 
+     *
+     * @param input
      */
     private void moveBall(boolean[] input) {
         if (input[KeypressEnum.SPACE.getValue()]
@@ -167,7 +180,8 @@ public class Arena {
     }
 
     /**
-     * Reset playing arena after death. Set paddle and ball position, allow launch.
+     * Reset playing arena after death. Set paddle and ball position, allow
+     * launch.
      */
     public void reset() {
         this.playerOne.respawn();
