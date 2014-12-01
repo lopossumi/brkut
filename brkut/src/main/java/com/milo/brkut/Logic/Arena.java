@@ -46,7 +46,8 @@ public class Arena {
     }
 
     /**
-     * Do operations for this step. - move stuff - check collisions and deaths
+     * Do operations for this step. - move stuff around - check collisions and
+     * deaths
      *
      * @param input Keyboard inputs
      */
@@ -100,16 +101,16 @@ public class Arena {
     }
 
     /**
-     * Moves player one according to input. Checks collisions between walls.
+     * Moves player one according to input and checks collisions between walls.
      *
-     * @param input
+     * @param input Keyboard inputs
      */
     private void movePlayerOne(boolean[] input) {
         if (input[KeypressEnum.LEFT.getValue()]) {
-            playerOne.accelerateX(-1);
+            playerOne.accelerateX(-Config.PLAYER_ACCELERATION);
         }
         if (input[KeypressEnum.RIGHT.getValue()]) {
-            playerOne.accelerateX(1);
+            playerOne.accelerateX(Config.PLAYER_ACCELERATION);
         }
         playerOne.move();
         playerOne.decelerate();
@@ -125,10 +126,10 @@ public class Arena {
     }
 
     /**
-     * Move the ball at its internal speed. If launch is allowed, check if space
+     * Move the ball at its internal speed; if launch is allowed, check if space
      * bar is pressed and launch ball.
      *
-     * @param input
+     * @param input Keyboard inputs
      */
     private void moveBall(boolean[] input) {
         if (input[KeypressEnum.SPACE.getValue()]
@@ -201,8 +202,12 @@ public class Arena {
         this.launchAllowed = true;
     }
 
-    // TODO: This is for testing and should be rewritten to use some sort of 
-    // level generation thingie.
+    /**
+     * Creates bricks for an arena.
+     *
+     * @param rows How many rows of bricks
+     * @param columns How many columns of bricks
+     */
     private void addBricks(int rows, int columns) {
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < columns; x++) {
@@ -222,12 +227,21 @@ public class Arena {
         return multiplier;
     }
 
+    /**
+     * Sets the bonus multiplier to a given value.
+     *
+     * @param multiplier
+     */
     public void setMultiplier(double multiplier) {
         this.multiplier = multiplier;
     }
 
     public HashSet<GameObject> getBricks() {
         return this.bricks;
+    }
+
+    public void setBricks(HashSet<GameObject> bricks) {
+        this.bricks = bricks;
     }
 
     public Player getPlayerOne() {
@@ -242,7 +256,20 @@ public class Arena {
         return this.score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public int getHighscore() {
         return this.highScore;
     }
+
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
+
+    public void setLaunchAllowed(boolean launchAllowed) {
+        this.launchAllowed = launchAllowed;
+    }
+
 }

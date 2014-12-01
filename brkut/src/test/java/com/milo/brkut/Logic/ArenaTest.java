@@ -1,5 +1,6 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Main.Config;
 import java.util.HashSet;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -27,6 +28,19 @@ public class ArenaTest {
             instance.step(new boolean[3]);
         }
         assertTrue(instance.getScore() > 0);
+
+        //Bounces from the sides
+        instance.reset();
+        instance.getBall().setVx(-10);
+        for (int i = 0; i < 20; i++) {
+            instance.step(new boolean[3]);
+        }
+        assertEquals(instance.getBall().getVx(), 10, 0.0);
+        for (int i = 0; i < 80; i++) {
+            instance.step(new boolean[3]);
+        }
+        assertEquals(instance.getBall().getVx(), -10, 0.0);
+
     }
 
     /**
@@ -36,9 +50,32 @@ public class ArenaTest {
     public void testGetStatus() {
         System.out.println("getStatus");
         Arena instance = new Arena(0);
-        GameStatusEnum expResult = GameStatusEnum.START;
-        GameStatusEnum result = instance.getStatus();
-        assertEquals(expResult, result);
+        assertEquals(GameStatusEnum.START, instance.getStatus());
+
+        instance.setLaunchAllowed(false);
+        assertEquals(GameStatusEnum.RUNNING, instance.getStatus());
+
+        instance.getPlayerOne().kill();
+        assertEquals(GameStatusEnum.DIED, instance.getStatus());
+
+        instance.reset();
+        assertEquals(GameStatusEnum.START, instance.getStatus());
+
+        instance.setLaunchAllowed(false);
+        instance.setHit(true);
+        assertEquals(GameStatusEnum.HIT, instance.getStatus());
+
+        HashSet brixx = new HashSet<GameObject>();
+        instance.setBricks(brixx);
+        assertEquals(GameStatusEnum.WON, instance.getStatus());
+        brixx.add(new Brick(1, 1, 1, 1));
+
+        instance.getPlayerOne().kill();
+        instance.getPlayerOne().kill();
+        assertEquals(GameStatusEnum.GAMEOVER, instance.getStatus());
+
+        instance.setScore(100);
+        assertEquals(GameStatusEnum.HIGHSCORE, instance.getStatus());
     }
 
     /**
@@ -85,7 +122,7 @@ public class ArenaTest {
         Arena instance = new Arena(0);
         Ball ball = instance.getBall();
         Player pOne = instance.getPlayerOne();
-        
+
         //Vertical
         instance.setMultiplier(2);
         ball.moveTo(60, 490);
@@ -95,10 +132,10 @@ public class ArenaTest {
         instance.handleCollisionWithPlayerOne();
         assertEquals(1.0, instance.getMultiplier(), 0.0);
         assertEquals(-5, ball.getVy(), 0.0);
-        
+
         // Check if ball Y coordinate and X velocity have changed
         // (Collision.clear & bounce directional function)
-        assertTrue(ball.getVx()<0);
+        assertTrue(ball.getVx() < 0);
         assertTrue(ball.getY() < 490);
 
         //Horizontal
@@ -114,4 +151,26 @@ public class ArenaTest {
         assertTrue(ball.getX() < 46);
     }
 
+    @Test
+    public void testReset() {
+        Arena instance = new Arena(0);
+        Ball ball = instance.getBall();
+        Player pOne = instance.getPlayerOne();
+
+        //Set some values for speeds and positions
+        pOne.setX(400);
+        pOne.setY(420);
+        pOne.accelerateXY(10, 10);
+        ball.setX(123);
+        ball.setY(456);
+        ball.accelerateXY(10, 10);
+
+        pOne.kill();
+        assertTrue(!pOne.isAlive());
+
+        instance.reset();
+        assertTrue(pOne.isAlive());
+        assertEquals(Config.PLAYER_START_X, pOne.getX(), 0.0);
+        assertEquals(Config.BALL_START_X, ball.getX(), 0.0);
+    }
 }
