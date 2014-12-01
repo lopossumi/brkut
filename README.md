@@ -38,7 +38,7 @@ TODO
 - [x] Draw a preliminary class diagram 
 
 **High order tasks:**
-- [ ] Study testing
+- [x] Study testing
 - [x] Concept art
 - [ ] Sound design and sampling
 
@@ -47,17 +47,17 @@ TODO
 - [x] Draw a rectangle on the canvas
 - [x] Move a rectangle on the canvas
 - [x] Bounce a square ball from < ^ > walls
-- [ ] Move the rectangle (paddle) with user input (constant speed, no inertia)
-- [ ] Add inertia
+- [x] Move the rectangle (paddle) with user input (constant speed, no inertia)
+- [x] Add inertia
 - [x] Add collision with paddle
-- [ ] Launch angle function
+- [x] Launch angle function
 - [x] Create bricks
 - [x] Add collision with bricks
 - [x] Destroyable bricks
-- [ ] Score & lives & level counter
+- [x] Score & lives & level counter
 - [ ] Arena generation
 - [ ] Levels
 - [ ] Game over screen with stats
 - [ ] High score table
-- [ ] Launch screen (player press start)
+- [x] Launch screen (player press start)
 - [ ] ...
