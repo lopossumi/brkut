@@ -2,6 +2,7 @@ package com.milo.brkut.Logic;
 
 import com.milo.brkut.Main.Config;
 import java.util.HashSet;
+import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -172,5 +173,62 @@ public class ArenaTest {
         assertTrue(pOne.isAlive());
         assertEquals(Config.PLAYER_START_X, pOne.getX(), 0.0);
         assertEquals(Config.BALL_START_X, ball.getX(), 0.0);
+    }
+
+    @Test
+    public void testMovePlayerOne() {
+        Arena instance = new Arena(0);
+        Player pOne = instance.getPlayerOne();
+
+        //Test left
+        pOne.setX(100);
+        boolean[] input = new boolean[3];
+        input[KeypressEnum.LEFT.getValue()] = true;
+        instance.movePlayerOne(input);
+        assertTrue(pOne.getX() < 100);
+        assertTrue(pOne.getVx() < 0);
+
+        for (int i = 0; i < 100; i++) {
+            instance.movePlayerOne(input);
+        }
+        //Check if player one stops at the border
+        assertTrue(pOne.getX() == pOne.getWidth() / 2);
+
+        //Test right
+        pOne.setX(100);
+        input = new boolean[3];
+        input[KeypressEnum.LEFT.getValue()] = false;
+        input[KeypressEnum.RIGHT.getValue()] = true;
+        instance.movePlayerOne(input);
+        assertTrue(pOne.getX() > 100);
+        assertTrue(pOne.getVx() > 0);
+
+        for (int i = 0; i < 100; i++) {
+            instance.movePlayerOne(input);
+        }
+        //Check if player one stops at the border
+        assertTrue(pOne.getX() == Config.ARENA_WIDTH - pOne.getWidth() / 2);
+
+    }
+
+    @Test
+    public void testMoveBall() {
+        Arena instance = new Arena(0);
+        Player pOne = instance.getPlayerOne();
+        Ball ball = instance.getBall();
+
+        //Test launch
+        instance.setLaunchAllowed(true);
+        ball.setX(110);
+        ball.setVx(0);
+        ball.setVy(0);
+        pOne.setX(100);
+        boolean[] input = new boolean[3];
+        input[KeypressEnum.SPACE.getValue()] = true;
+
+        instance.moveBall(input);
+        assertTrue(ball.getVy() < 0);
+        assertTrue(ball.getVx() > 0);
+        assertTrue(instance.isLaunchAllowed() == false);
     }
 }

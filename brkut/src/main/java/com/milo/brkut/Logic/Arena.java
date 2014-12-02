@@ -105,7 +105,7 @@ public class Arena {
      *
      * @param input Keyboard inputs
      */
-    private void movePlayerOne(boolean[] input) {
+    public void movePlayerOne(boolean[] input) {
         if (input[KeypressEnum.LEFT.getValue()]) {
             playerOne.accelerateX(-Config.PLAYER_ACCELERATION);
         }
@@ -125,13 +125,17 @@ public class Arena {
         }
     }
 
+    public boolean isLaunchAllowed() {
+        return launchAllowed;
+    }
+
     /**
      * Move the ball at its internal speed; if launch is allowed, check if space
      * bar is pressed and launch ball.
      *
      * @param input Keyboard inputs
      */
-    private void moveBall(boolean[] input) {
+    public void moveBall(boolean[] input) {
         if (input[KeypressEnum.SPACE.getValue()]
                 && this.launchAllowed == true
                 && Math.abs(this.ball.getX() - this.playerOne.getX()) < this.playerOne.getWidth() / 2) {
