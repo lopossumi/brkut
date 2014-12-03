@@ -31,7 +31,7 @@ public class Engine extends Thread {
             update();
         }
 
-        // Close window
+        // Running complete - we're done here. Close window.
         gui.getFrame().dispatchEvent(new WindowEvent(gui.getFrame(), WindowEvent.WINDOW_CLOSING));
     }
 
@@ -110,8 +110,7 @@ public class Engine extends Thread {
     private void doHighScore() {
         this.sounds.died();
         animateDeath();
-        hold(500);
-        HighscoreIO.update(arena.getScore());
+        drawHold(30);
         close();
     }
 
@@ -128,9 +127,6 @@ public class Engine extends Thread {
             draw();
         }
         drawHold(60);
-        pOne.setWidth(Config.PLAYER_WIDTH);
-        pOne.setHeight(Config.PLAYER_HEIGHT);
-        pOne.setColor(Color.WHITE);
     }
 
     private void doWin() {
@@ -139,6 +135,10 @@ public class Engine extends Thread {
         close();
     }
 
+    /**
+     * Holds for a number of frames, while updating the screen for animations.
+     * @param frames Number of frames to wait
+     */
     private void drawHold(int frames) {
         for (int i = 0; i < frames; i++) {
             hold(1000 / 60);

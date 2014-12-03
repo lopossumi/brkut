@@ -1,5 +1,7 @@
 package com.milo.brkut.Main;
 
+import java.awt.Color;
+
 /**
  * Global configuration of game rules.
  * @author milo
@@ -18,8 +20,8 @@ public class Config {
     public static final double PLAYER_HEIGHT = 15;
     public static final double PLAYER_MAXSPEED = 10;
     public static final double PLAYER_ACCELERATION = 1;
+    public static final Color PLAYER_COLOR = Color.WHITE;
     
-
     public static final double BALL_START_X = 110;
     public static final double BALL_START_Y = 480;
     public static final double BALL_WIDTH = 10;

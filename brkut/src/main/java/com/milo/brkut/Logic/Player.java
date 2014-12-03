@@ -2,6 +2,8 @@ package com.milo.brkut.Logic;
 
 import com.milo.brkut.Main.Config;
 import java.awt.Color;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author milo
@@ -36,6 +38,9 @@ public class Player extends GameObject {
         this.alive = true;
         this.stop();
         this.moveTo(x, y);
+        this.setWidth(Config.PLAYER_WIDTH);
+        this.setHeight(Config.PLAYER_HEIGHT);
+        this.setColor(Config.PLAYER_COLOR);
     }
 
     boolean isAlive() {
