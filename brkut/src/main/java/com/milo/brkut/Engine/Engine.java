@@ -129,6 +129,9 @@ public class Engine extends Thread {
         drawHold(60);
     }
 
+    /**
+     * All bricks are destroyed. Something cool happens.
+     */
     private void doWin() {
         draw();
         hold(2000);

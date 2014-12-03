@@ -20,7 +20,7 @@ public class SoundEngine {
         play("media/died.wav");
     }
 
-    public void play(String sample) {
+    private void play(String sample) {
         try {
             InputStream in = new FileInputStream(sample);
             AudioStream audio = new AudioStream(in);

@@ -13,14 +13,11 @@ import javax.swing.WindowConstants;
 
 public class GUI implements Runnable {
 
-    private JFrame frame;
+    private JFrame window;
     private Logic logic;
-    private Panel window;
+    private Panel panel;
     private UserInput input;
     
-    private final int WIDTH = Config.ARENA_WIDTH;
-    private final int HEIGHT = Config.ARENA_HEIGHT;
-
     public GUI(Logic logic) {
         this.logic = logic;
         this.input = new UserInput(this.logic.getPlayerOne());
@@ -28,35 +25,31 @@ public class GUI implements Runnable {
 
     @Override
     public void run() {
-        frame = new JFrame("BRKUT");
-        frame.setResizable(false);
-        frame.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        createComponents(frame.getContentPane());
-
-        
-        //UserInput input = new UserInput(this.logic.getPlayerOne());
-        frame.addKeyListener(this.input);
-        
-        frame.pack();
-        frame.setVisible(true);
+        window = new JFrame("BRKUT");
+        window.setResizable(false);
+        window.setPreferredSize(new Dimension(Config.ARENA_WIDTH, Config.ARENA_HEIGHT));
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        createComponents(window.getContentPane());
+        window.addKeyListener(this.input);     
+        window.pack();
+        window.setVisible(true);
     }
 
     public void createComponents(Container container) {
-        window = new Panel(logic);
-        container.add(window);
+        panel = new Panel(logic);
+        container.add(panel);
     }
 
     public void draw() {
-        if (window == null) {
+        if (panel == null) {
             return;
         }
 
-        window.repaint();
+        panel.repaint();
     }
 
     public JFrame getFrame() {
-        return frame;
+        return window;
     }
     
     public UserInput input(){
