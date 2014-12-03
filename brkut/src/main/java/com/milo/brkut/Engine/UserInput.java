@@ -1,4 +1,4 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.Engine;
 
 import com.milo.brkut.Logic.KeypressEnum;
 import com.milo.brkut.Logic.Player;
@@ -11,11 +11,9 @@ import java.awt.event.KeyListener;
  */
 public class UserInput implements KeyListener {
 
-	//private Player player;
-	private boolean[] keyPresses;
+	private final boolean[] keyPresses;
 
 	public UserInput(Player p) {
-		//this.player = p;
 		this.keyPresses = new boolean[3];
 	}
 

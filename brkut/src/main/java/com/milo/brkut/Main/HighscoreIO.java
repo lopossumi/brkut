@@ -16,7 +16,7 @@ import java.io.FileOutputStream;
  */
 public class HighscoreIO {
 
-    private final static String filename = "highscore.dat";
+    private final static String filename = Config.HIGHSCORE_FILENAME;
     
     public static void update(int i) {
         int oldScore = read();

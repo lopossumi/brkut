@@ -1,10 +1,10 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.Engine;
 
 import com.milo.brkut.Logic.*;
+import com.milo.brkut.Main.Config;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import javax.swing.JPanel;
 
 /**

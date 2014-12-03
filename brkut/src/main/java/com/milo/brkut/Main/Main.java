@@ -1,5 +1,7 @@
 package com.milo.brkut.Main;
 
+import com.milo.brkut.Engine.GUI;
+import com.milo.brkut.Engine.Engine;
 import com.milo.brkut.Logic.*;
 import javax.swing.SwingUtilities;
 

@@ -1,12 +1,10 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.Engine;
 
 import com.milo.brkut.Logic.*;
+import com.milo.brkut.Main.Config;
+import com.milo.brkut.Main.HighscoreIO;
 import java.awt.Color;
 import java.awt.event.WindowEvent;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author milo

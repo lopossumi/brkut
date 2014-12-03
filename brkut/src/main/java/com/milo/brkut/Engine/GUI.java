@@ -1,6 +1,7 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.Engine;
 
 import com.milo.brkut.Logic.Arena;
+import com.milo.brkut.Main.Config;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;

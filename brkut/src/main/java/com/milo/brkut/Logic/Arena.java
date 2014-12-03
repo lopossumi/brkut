@@ -1,7 +1,6 @@
 package com.milo.brkut.Logic;
 
 import com.milo.brkut.Main.Config;
-import com.milo.brkut.Main.HighscoreIO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,8 +10,8 @@ import java.util.HashSet;
  */
 public class Arena {
 
-    private Player playerOne;
-    private Ball ball;
+    private final Player playerOne;
+    private final Ball ball;
     private HashSet<GameObject> bricks;
     private int score;
     private double multiplier;

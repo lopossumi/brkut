@@ -7,6 +7,8 @@ package com.milo.brkut.Main;
 
 public class Config {
     
+    public static final String HIGHSCORE_FILENAME = "highscore.dat";
+    
     public static final int ARENA_WIDTH = 800;
     public static final int ARENA_HEIGHT = 600;
 
