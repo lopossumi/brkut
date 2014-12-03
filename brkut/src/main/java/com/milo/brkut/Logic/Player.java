@@ -43,6 +43,7 @@ public class Player extends GameObject {
         this.setColor(Config.PLAYER_COLOR);
     }
 
+    @Override
     boolean isAlive() {
         return this.alive;
     }
