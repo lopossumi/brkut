@@ -11,13 +11,12 @@ import javax.swing.SwingUtilities;
 public class Main {
 
     public static void main(String[] args) {
-        Arena arena;
-        arena = new Arena(HighscoreIO.read());
-        GUI gui = new GUI(arena);
-        Engine engine = new Engine(gui, arena);
+        Logic logic = new Logic(HighscoreIO.read());
+        GUI gui = new GUI(logic);
+        Engine engine = new Engine(gui, logic);
         SwingUtilities.invokeLater(gui);
 
         engine.start();
-        HighscoreIO.update(arena.getScore());
+        HighscoreIO.update(logic.getScore());
     }
 }

@@ -2,7 +2,7 @@ package com.milo.brkut.Main;
 
 import com.milo.brkut.Engine.GUI;
 import com.milo.brkut.Engine.Engine;
-import com.milo.brkut.Logic.Arena;
+import com.milo.brkut.Logic.Logic;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -57,7 +57,7 @@ public class EngineTest {
     @Test
     public void testClose() {
         System.out.println("close");
-        Arena a = new Arena(0);
+        Logic a = new Logic(0);
         GUI g = new GUI(a);
         Engine instance = new Engine(g,a);
         instance.close();

@@ -76,10 +76,22 @@ class Collision {
         }
     }
 
+    /**
+     * Returns the amount of overlap between objects (e.g. positive value of 50 means that the objects must be moved 50 units to be clear on the X axis).
+     * @param ego First object
+     * @param other Second object
+     * @return Amount of overlap
+     */
     static double xOverlap(GameObject ego, GameObject other) {
         return -Math.abs(ego.getX() - other.getX()) + (ego.getWidth() + other.getWidth()) / 2;
     }
-
+    
+    /**
+     * Returns the amount of overlap between objects (e.g. positive value of 50 means that the objects must be moved 50 units to be clear on the Y axis).
+     * @param ego First object
+     * @param other Second object
+     * @return Amount of overlap
+     */
     static double yOverlap(GameObject ego, GameObject other) {
         return -Math.abs(ego.getY() - other.getY()) + (ego.getHeight() + other.getHeight()) / 2;
     }
@@ -88,7 +100,6 @@ class Collision {
      * Bounce types.
      */
     static enum bounce {
-
         NONE, VERTICAL, HORIZONTAL
     }
 }

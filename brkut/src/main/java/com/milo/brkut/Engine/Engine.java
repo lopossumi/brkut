@@ -12,13 +12,13 @@ import java.awt.event.WindowEvent;
 public class Engine extends Thread {
 
     private GUI gui;
-    private Arena arena;
+    private Logic logic;
     private boolean running;
     private SoundEngine sounds;
 
-    public Engine(GUI gui, Arena arena) {
+    public Engine(GUI gui, Logic logic) {
         this.gui = gui;
-        this.arena = arena;
+        this.logic = logic;
         this.running = true;
         this.sounds = new SoundEngine();
     }
@@ -36,29 +36,29 @@ public class Engine extends Thread {
     }
 
     /**
-     * Update the game arena.
+     * Update the game logic.
      */
     public void update() {
-        arena.step(this.gui.input().update());
-        if (arena.getStatus() == GameStatusEnum.HIT) {
+        logic.step(this.gui.input().update());
+        if (logic.getStatus() == GameStatusEnum.HIT) {
             this.sounds.hit();
         }
-        if (arena.getStatus() == GameStatusEnum.WON) {
+        if (logic.getStatus() == GameStatusEnum.WON) {
             doWin();
         }
-        if (arena.getStatus() == GameStatusEnum.HIGHSCORE) {
+        if (logic.getStatus() == GameStatusEnum.HIGHSCORE) {
             doHighScore();
         }
-        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
+        if (logic.getStatus() == GameStatusEnum.GAMEOVER) {
             doGameOver();
         }
-        if (arena.getStatus() == GameStatusEnum.DIED) {
+        if (logic.getStatus() == GameStatusEnum.DIED) {
             doDeath();
         }
     }
 
     /**
-     * Draw updated game arena on screen.
+     * Draw updated game logic on screen.
      */
     public void draw() {
         gui.draw();
@@ -89,7 +89,7 @@ public class Engine extends Thread {
     private void doDeath() {
         this.sounds.died();
         animateDeath();
-        this.arena.reset();
+        this.logic.reset();
     }
 
     /**
@@ -118,7 +118,7 @@ public class Engine extends Thread {
      * Play death animation. Paddle turns red and changes shape.
      */
     private void animateDeath() {
-        Player pOne = this.arena.getPlayerOne();
+        Player pOne = this.logic.getPlayerOne();
         for (int i = 0; i < 100; i++) {
             pOne.setColor(new Color(255, 200 - i * 2, 200 - i * 2));
             pOne.setWidth(pOne.getWidth() * 0.95);

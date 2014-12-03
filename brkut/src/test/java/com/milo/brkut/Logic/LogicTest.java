@@ -1,8 +1,8 @@
 package com.milo.brkut.Logic;
 
+import com.milo.brkut.Engine.KeypressEnum;
 import com.milo.brkut.Main.Config;
 import java.util.HashSet;
-import java.util.Set;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,18 +10,18 @@ import static org.junit.Assert.*;
  *
  * @author milo
  */
-public class ArenaTest {
+public class LogicTest {
 
-    public ArenaTest() {
+    public LogicTest() {
     }
 
     /**
-     * Test of step method, of class Arena.
+     * Test of step method, of class Logic.
      */
     @Test
     public void testStep() {
         System.out.println("step");
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
 
         // After 1000 steps, we should have hit something. Anything.
         instance.getBall().setVy(-5);
@@ -45,12 +45,12 @@ public class ArenaTest {
     }
 
     /**
-     * Test of getStatus method, of class Arena.
+     * Test of getStatus method, of class Logic.
      */
     @Test
     public void testGetStatus() {
         System.out.println("getStatus");
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         assertEquals(GameStatusEnum.START, instance.getStatus());
 
         instance.setLaunchAllowed(false);
@@ -66,7 +66,7 @@ public class ArenaTest {
         instance.setHit(true);
         assertEquals(GameStatusEnum.HIT, instance.getStatus());
 
-        HashSet brixx = new HashSet<GameObject>();
+        HashSet brixx = new HashSet<>();
         instance.setBricks(brixx);
         assertEquals(GameStatusEnum.WON, instance.getStatus());
         brixx.add(new Brick(1, 1, 1, 1));
@@ -80,47 +80,47 @@ public class ArenaTest {
     }
 
     /**
-     * Test of getBricks method, of class Arena.
+     * Test of getBricks method, of class Logic.
      */
     @Test
     public void testGetBricks() {
         System.out.println("getBricks");
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         int expResult = 60;
         HashSet<GameObject> result = instance.getBricks();
         assertEquals(expResult, result.size());
     }
 
     /**
-     * Test of getPlayerOne method, of class Arena.
+     * Test of getPlayerOne method, of class Logic.
      */
     @Test
     public void testGetPlayerOne() {
         System.out.println("getPlayerOne");
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         int expResult = 3;
         Player result = instance.getPlayerOne();
         assertEquals(expResult, result.getLives());
     }
 
     /**
-     * Test of getBall method, of class Arena.
+     * Test of getBall method, of class Logic.
      */
     @Test
     public void testGetBall() {
         System.out.println("getBall");
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         int expResult = 0;
         Ball result = instance.getBall();
         assertEquals(expResult, result.getVy(), 0.0);
     }
 
     /**
-     * Test of getBall method, of class Arena.
+     * Test of getBall method, of class Logic.
      */
     @Test
     public void testHandleCollisionWithPlayerOne() {
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         Ball ball = instance.getBall();
         Player pOne = instance.getPlayerOne();
 
@@ -154,7 +154,7 @@ public class ArenaTest {
 
     @Test
     public void testReset() {
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         Ball ball = instance.getBall();
         Player pOne = instance.getPlayerOne();
 
@@ -177,7 +177,7 @@ public class ArenaTest {
 
     @Test
     public void testMovePlayerOne() {
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         Player pOne = instance.getPlayerOne();
 
         //Test left
@@ -213,7 +213,7 @@ public class ArenaTest {
 
     @Test
     public void testMoveBall() {
-        Arena instance = new Arena(0);
+        Logic instance = new Logic(0);
         Player pOne = instance.getPlayerOne();
         Ball ball = instance.getBall();
 

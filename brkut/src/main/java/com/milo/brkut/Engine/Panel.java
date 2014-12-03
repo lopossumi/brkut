@@ -13,11 +13,11 @@ import javax.swing.JPanel;
  */
 public class Panel extends JPanel {
 
-    private Arena arena;
+    private Logic logic;
     private int tick;
 
-    public Panel(Arena arena) {
-        this.arena = arena;
+    public Panel(Logic logic) {
+        this.logic = logic;
         this.tick = 0;
     }
 
@@ -37,10 +37,10 @@ public class Panel extends JPanel {
         drawGrid(g);
         drawSineWave(g);
 
-        if (arena.getStatus() == GameStatusEnum.START) {
+        if (logic.getStatus() == GameStatusEnum.START) {
             drawStart(g);
         }
-        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
+        if (logic.getStatus() == GameStatusEnum.GAMEOVER) {
             drawGameOver(g);
         }
 
@@ -50,11 +50,11 @@ public class Panel extends JPanel {
         drawHighscore(g);
 
         // Draw GameObjects
-        for (GameObject brick : arena.getBricks()) {
+        for (GameObject brick : logic.getBricks()) {
             drawGameObject(brick, g);
         }
-        drawGameObject(arena.getPlayerOne(), g);
-        drawGameObject(arena.getBall(), g);
+        drawGameObject(logic.getPlayerOne(), g);
+        drawGameObject(logic.getBall(), g);
         getToolkit().sync();
     }
 
@@ -73,28 +73,28 @@ public class Panel extends JPanel {
     private void drawScore(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
-        char[] score = ("SCORE  " + String.valueOf(arena.getScore())).toCharArray();
+        char[] score = ("SCORE  " + String.valueOf(logic.getScore())).toCharArray();
         g.drawChars(score, 0, score.length, 400, 30);
     }
 
     private void drawLives(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
-        char[] lives = ("LIVES  " + String.valueOf(arena.getPlayerOne().getLives())).toCharArray();
+        char[] lives = ("LIVES  " + String.valueOf(logic.getPlayerOne().getLives())).toCharArray();
         g.drawChars(lives, 0, lives.length, 30, 30);
     }
 
     private void drawMultiplier(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
-        char[] multiplier = ("BONUS  " + String.format("%.2g%n", arena.getMultiplier()) + "x").toCharArray();
+        char[] multiplier = ("BONUS  " + String.format("%.2g%n", logic.getMultiplier()) + "x").toCharArray();
         g.drawChars(multiplier, 0, multiplier.length, 150, 30);
     }
 
     private void drawHighscore(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
-        char[] highscore = ("HIGH SCORE  " + String.valueOf(arena.getHighscore())).toCharArray();
+        char[] highscore = ("HIGH SCORE  " + String.valueOf(logic.getHighscore())).toCharArray();
         g.drawChars(highscore, 0, highscore.length, 600, 30);
     }
 
@@ -138,7 +138,7 @@ public class Panel extends JPanel {
 
         int yMid = Config.ARENA_HEIGHT / 2;
         int step = 1;
-        double amp = 15 + 50 * (this.arena.getMultiplier() - 1);
+        double amp = 15 + 50 * (this.logic.getMultiplier() - 1);
         for (int i = 0; i < Config.ARENA_WIDTH; i = i + step) {
             int y = (int) (yMid+amp*Math.sin((i/20 + tick) / step));
             g.drawLine(i, y, i, y);
