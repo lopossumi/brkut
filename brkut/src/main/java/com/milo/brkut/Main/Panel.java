@@ -4,6 +4,7 @@ import com.milo.brkut.Logic.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +22,7 @@ public class Panel extends JPanel {
     }
 
     private void tick() {
-        if (this.tick > 2000) {
+        if (this.tick > 360) {
             this.tick = 0;
         } else {
             this.tick++;
@@ -32,7 +33,9 @@ public class Panel extends JPanel {
     public void paint(Graphics g) {
         tick();
         super.paint(g);
-        this.setBackground(Color.BLACK);
+        this.setBackground(new Color(30,30,30));
+        drawGrid(g);
+        drawSineWave(g);
 
         if (arena.getStatus() == GameStatusEnum.START) {
             drawStart(g);
@@ -40,6 +43,7 @@ public class Panel extends JPanel {
         if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
             drawGameOver(g);
         }
+
         drawScore(g);
         drawLives(g);
         drawMultiplier(g);
@@ -70,7 +74,7 @@ public class Panel extends JPanel {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
         char[] score = ("SCORE  " + String.valueOf(arena.getScore())).toCharArray();
-        g.drawChars(score, 0, score.length, 300, 30);
+        g.drawChars(score, 0, score.length, 400, 30);
     }
 
     private void drawLives(Graphics g) {
@@ -91,7 +95,7 @@ public class Panel extends JPanel {
         g.setFont(new Font("default", Font.BOLD, 16));
         g.setColor(Color.GREEN);
         char[] highscore = ("HIGH SCORE  " + String.valueOf(arena.getHighscore())).toCharArray();
-        g.drawChars(highscore, 0, highscore.length, 500, 30);
+        g.drawChars(highscore, 0, highscore.length, 600, 30);
     }
 
     private void drawStart(Graphics g) {
@@ -115,5 +119,29 @@ public class Panel extends JPanel {
         g.setColor(Color.GREEN);
         char[] gameover = ("G A M E   O V E R").toCharArray();
         g.drawChars(gameover, 0, gameover.length, 230, 350);
+    }
+
+    private void drawGrid(Graphics g) {
+        g.setColor(new Color(0, Math.abs(tick/2-90), 0));
+
+        int gridWidth = 40;
+        for (int x = 0; x < Config.ARENA_WIDTH; x = x + gridWidth) {
+            g.drawLine(x, 0, x, Config.ARENA_HEIGHT);
+        }
+        for (int y = 0; y < Config.ARENA_HEIGHT; y = y + gridWidth) {
+            g.drawLine(0, y, Config.ARENA_WIDTH, y);
+        }
+    }
+
+    private void drawSineWave(Graphics g) {
+        g.setColor(Color.WHITE);
+
+        int yMid = Config.ARENA_HEIGHT / 2;
+        int step = 1;
+        double amp = 15 + 50 * (this.arena.getMultiplier() - 1);
+        for (int i = 0; i < Config.ARENA_WIDTH; i = i + step) {
+            int y = (int) (yMid+amp*Math.sin((i/20 + tick) / step));
+            g.drawLine(i, y, i, y);
+        }
     }
 }

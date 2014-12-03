@@ -45,20 +45,17 @@ public class Engine extends Thread {
         if (arena.getStatus() == GameStatusEnum.HIT) {
             this.sounds.hit();
         }
-        if (arena.getStatus() == GameStatusEnum.DIED) {
-            doDeath();
-        }
-        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
-            doGameOver();
-        }
-        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
-            doGameOver();
+        if (arena.getStatus() == GameStatusEnum.WON) {
+            doWin();
         }
         if (arena.getStatus() == GameStatusEnum.HIGHSCORE) {
             doHighScore();
         }
-        if (arena.getStatus() == GameStatusEnum.WON){
-            doWin();
+        if (arena.getStatus() == GameStatusEnum.GAMEOVER) {
+            doGameOver();
+        }
+        if (arena.getStatus() == GameStatusEnum.DIED) {
+            doDeath();
         }
     }
 
@@ -94,7 +91,6 @@ public class Engine extends Thread {
     private void doDeath() {
         this.sounds.died();
         animateDeath();
-        hold(500);
         this.arena.reset();
     }
 
@@ -133,7 +129,7 @@ public class Engine extends Thread {
             hold(1000 / 60);
             draw();
         }
-        hold(500);
+        drawHold(60);
         pOne.setWidth(Config.PLAYER_WIDTH);
         pOne.setHeight(Config.PLAYER_HEIGHT);
         pOne.setColor(Color.WHITE);
@@ -143,5 +139,12 @@ public class Engine extends Thread {
         draw();
         hold(2000);
         close();
+    }
+
+    private void drawHold(int frames) {
+        for (int i = 0; i < frames; i++) {
+            hold(1000 / 60);
+            draw();
+        }
     }
 }
