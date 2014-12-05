@@ -3,6 +3,9 @@ Class hierarchy
 
 ![Class Diagram](https://github.com/lopossumi/brkut/blob/master/documentation/ClassDiagram-2014-12-04.png)
 
+Sequence diagrams
+=================
+![Sequence Diagram Hit]https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png
 
 Collision detection
 ===================
