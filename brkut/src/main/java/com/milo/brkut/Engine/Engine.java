@@ -26,9 +26,9 @@ public class Engine extends Thread {
     @Override
     public void run() {
         while (this.running) {
+            update();
             draw();
             hold(1000 / 60);
-            update();
         }
 
         // Running complete - we're done here. Close window.
