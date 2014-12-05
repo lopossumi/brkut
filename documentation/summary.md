@@ -2,10 +2,12 @@ Class hierarchy
 ===============
 
 ![Class Diagram](https://github.com/lopossumi/brkut/blob/master/documentation/ClassDiagram-2014-12-04.png)
+**Figure 1:** Class diagram with packages and connections.
 
 Sequence diagrams
 =================
-![Sequence Diagram Hit]https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png
+![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png)
+**Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
 
 Collision detection
 ===================
@@ -13,7 +15,6 @@ Collision detection
 Collisions are detected between GameObjects. To determine where the ball should bounce, the function also returns whether the collision was vertical or horizontal (corner cases default to vertical collision).
 
 ![Collision testing](https://github.com/lopossumi/brkut/blob/master/images/collision.png)
-
 **Figure 1:** Testing collision detection in Excel.
 
 **Extensions**
