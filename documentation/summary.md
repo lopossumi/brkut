@@ -1,5 +1,5 @@
-Class hierarchy
-===============
+BRKUT: Executive summary on implementation
+==========================================
 
 The application is divided into three packages (main, engine and logic):
 * Main handles file I/O and launches the game engine
