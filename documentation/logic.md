@@ -1,7 +1,7 @@
 Class hierarchy
 ===============
 
-![Class Diagram](https://github.com/lopossumi/brkut/blob/master/images/ClassDiagram-2014-12-04.png)
+![Class Diagram](https://github.com/lopossumi/brkut/blob/master/documentation/ClassDiagram-2014-12-04.png)
 
 
 Collision detection
