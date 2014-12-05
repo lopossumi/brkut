@@ -12,6 +12,12 @@ The application is divided into three packages (main, engine and logic):
 
 Sequence diagrams
 =================
+
+Hit
+---
+
+fFoo
+
 ![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png)
 
 **Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
