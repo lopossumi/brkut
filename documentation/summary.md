@@ -6,7 +6,7 @@ The application is divided into three packages (main, engine and logic):
 * Engine handles the update-view-hold -loop, and includes the graphical user interface, keyboard input and sounds
 * Logic handles collisions between objects, their hitpoints and existence.
 
-![Class Diagram](https://github.com/lopossumi/brkut/blob/master/documentation/ClassDiagram-2014-12-04.png)
+![Class Diagram](https://raw.githubusercontent.com/lopossumi/brkut/master/documentation/Class%20diagrams/ClassDiagram-2014-12-04.png)
 
 **Figure 1:** Class diagram with packages and connections.
 
@@ -17,7 +17,7 @@ Hit event
 ---------
 A simplified sequence diagram of one frame where a hit event occurs is presented below. Points are added, a sound sample is played and the screen is updated with the game state before going on hold before the next frame.
 
-![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png)
+![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/Sequence%20diagrams/SequenceDiagramHit.png)
 
 **Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
 
