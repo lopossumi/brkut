@@ -30,4 +30,4 @@ Collisions are detected between GameObjects. To determine where the ball should 
 
 **Figure 3:** Testing collision detection in Excel.
 
-Collision between the ball and the paddle alters the launch angle of the ball.
+Collision between the ball and the paddle alters the launch angle of the ball. Determining the launch angle is handled separately.
