@@ -16,5 +16,9 @@
 |2014-11-20 | 2.0   | Better input handling                                          |
 |2014-11-21 | 2.0   | Soundtest merge, pit report update                             |
 |2014-11-26 | 4.0   | Better physics all over                                        |
-
-
+|2014-11-27 | 4.0   | Gameplay improvements, javadocs, testing                       |
+|2014-12-01 | 4.0   | Lots of improvements, PIT testing                              |
+|2014-12-02 | 1.0   | PIT testing                                                    |
+|2014-12-04 | 4.0   | Updated class diagram, PIT report, lots of coding and cleaning |
+|2014-12-04 | 1.0   | Updated class diagram                                          |
+|2014-12-05 | 3.0   | Sequence diagrams, documentation                               |
