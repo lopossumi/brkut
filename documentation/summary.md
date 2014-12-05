@@ -13,10 +13,9 @@ The application is divided into three packages (main, engine and logic):
 Sequence diagrams
 =================
 
-Hit
----
-
-fFoo
+Hit event
+---------
+A simplified sequence diagram of one frame where a hit event occurs is presented below. Points are added, a sound sample is played and the screen is updated with the game state before going on hold before the next frame.
 
 ![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/SequenceDiagramHit.png)
 
