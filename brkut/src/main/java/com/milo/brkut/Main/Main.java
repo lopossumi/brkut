@@ -17,6 +17,5 @@ public class Main {
         SwingUtilities.invokeLater(gui);
 
         engine.start();
-        HighscoreIO.update(logic.getScore());
     }
 }

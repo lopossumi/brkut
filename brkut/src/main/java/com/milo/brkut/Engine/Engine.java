@@ -99,7 +99,7 @@ public class Engine extends Thread {
     private void doGameOver() {
         this.sounds.died();
         animateDeath();
-        hold(500);
+        drawHold(30);
         close();
     }
 
@@ -111,6 +111,7 @@ public class Engine extends Thread {
         this.sounds.died();
         animateDeath();
         drawHold(30);
+        HighscoreIO.update(logic.getScore());
         close();
     }
 
@@ -140,6 +141,7 @@ public class Engine extends Thread {
 
     /**
      * Holds for a number of frames, while updating the screen for animations.
+     *
      * @param frames Number of frames to wait
      */
     private void drawHold(int frames) {

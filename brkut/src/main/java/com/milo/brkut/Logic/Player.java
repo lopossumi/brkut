@@ -13,7 +13,7 @@ public class Player extends GameObject {
 
     public Player(double x, double y, double width, double height) {
         super(x, y, width, height);
-        this.lives = 3;
+        this.lives = Config.PLAYER_LIVES;
         this.color = Color.WHITE;
         this.alive = true;
 	this.setMaxSpeed(Config.PLAYER_MAXSPEED);
