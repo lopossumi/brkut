@@ -64,10 +64,10 @@ public class Logic {
 
         handleCollisionWithPlayerOne();
 
-        if (ball.getX() < 0 || ball.getX() > Config.ARENA_WIDTH) {
+        if (ball.getX() - ball.getWidth() / 2 < 0 || ball.getX() + ball.getWidth() / 2 > Config.ARENA_WIDTH) {
             ball.bounceHorizontal();
         }
-        if (ball.getY() < 0) {
+        if (ball.getY() - ball.getHeight() / 2 < 0) {
             ball.bounceVertical();
         }
         if (ball.getY() > Config.ARENA_HEIGHT) {
