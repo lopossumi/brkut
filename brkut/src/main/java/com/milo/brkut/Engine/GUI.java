@@ -55,4 +55,9 @@ public class GUI implements Runnable {
     public UserInput input(){
         return this.input;
     }
+
+    public void setLogic(Logic logic) {
+        this.logic = logic;
+        this.panel.setLogic(logic);
+    }
 }

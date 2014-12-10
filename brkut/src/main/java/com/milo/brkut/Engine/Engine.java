@@ -5,6 +5,8 @@ import com.milo.brkut.Main.Config;
 import com.milo.brkut.Main.HighscoreIO;
 import java.awt.Color;
 import java.awt.event.WindowEvent;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author milo
@@ -36,23 +38,25 @@ public class Engine extends Thread {
     }
 
     /**
-     * Update the game logic.
+     * Update the game logic and decide on an action based on the returned
+     * GameStatus.
      */
     public void update() {
-        logic.step(this.gui.input().update());
-        if (logic.getStatus() == GameStatusEnum.HIT) {
+        GameStatusEnum status = logic.step(this.gui.input().update());
+
+        if (status == GameStatusEnum.HIT) {
             this.sounds.hit();
         }
-        if (logic.getStatus() == GameStatusEnum.WON) {
+        if (status == GameStatusEnum.WON) {
             doWin();
         }
-        if (logic.getStatus() == GameStatusEnum.HIGHSCORE) {
+        if (status == GameStatusEnum.HIGHSCORE) {
             doHighScore();
         }
-        if (logic.getStatus() == GameStatusEnum.GAMEOVER) {
+        if (status == GameStatusEnum.GAMEOVER) {
             doGameOver();
         }
-        if (logic.getStatus() == GameStatusEnum.DIED) {
+        if (status == GameStatusEnum.DIED) {
             doDeath();
         }
     }
@@ -99,8 +103,31 @@ public class Engine extends Thread {
     private void doGameOver() {
         this.sounds.died();
         animateDeath();
-        drawHold(30);
-        close();
+        int tryAgain = tryAgainQuery();
+
+        // Quit or start new game.
+        if (tryAgain == 0) {
+            close();
+        } else {
+            int highScore = this.logic.getHighscore();
+            this.logic = new Logic(highScore);
+            this.gui.setLogic(this.logic);
+        }
+    }
+
+    private int tryAgainQuery() {
+        int playAgain = -1;
+        while (playAgain == -1) {
+            boolean[] kp = this.gui.input().update();
+            if (kp[KeypressEnum.N.getValue()]) {
+                playAgain = 0;
+            }
+            if (kp[KeypressEnum.Y.getValue()]) {
+                playAgain = 1;
+            }
+            drawHold(1);
+        }
+        return playAgain;
     }
 
     /**
@@ -110,9 +137,17 @@ public class Engine extends Thread {
     private void doHighScore() {
         this.sounds.died();
         animateDeath();
-        drawHold(30);
         HighscoreIO.update(logic.getScore());
-        close();
+        int tryAgain = tryAgainQuery();
+
+        // Quit or start new game.
+        if (tryAgain == 0) {
+            close();
+        } else {
+            int highScore = this.logic.getScore();
+            this.logic = new Logic(highScore);
+            this.gui.setLogic(this.logic);
+        }
     }
 
     /**
@@ -127,7 +162,6 @@ public class Engine extends Thread {
             hold(1000 / 60);
             draw();
         }
-        drawHold(60);
     }
 
     /**

@@ -11,8 +11,8 @@ import java.util.HashSet;
  */
 public class Logic {
 
-    private final Player playerOne;
-    private final Ball ball;
+    private Player playerOne;
+    private Ball ball;
     private HashSet<GameObject> bricks;
     private int score;
     private double multiplier;
@@ -50,8 +50,9 @@ public class Logic {
      * deaths
      *
      * @param input Keyboard inputs
+     * @return Game status.
      */
-    public void step(boolean[] input) {
+    public GameStatusEnum step(boolean[] input) {
 
         moveBall(input);
         movePlayerOne(input);
@@ -73,6 +74,8 @@ public class Logic {
         if (ball.getY() > Config.ARENA_HEIGHT) {
             playerOne.kill();
         }
+
+        return this.getStatus();
     }
 
     /**
@@ -204,6 +207,7 @@ public class Logic {
         this.ball.stop();
         this.ball.moveTo(Config.BALL_START_X, Config.BALL_START_Y);
         this.launchAllowed = true;
+        this.multiplier = 1.0;
     }
 
     /**

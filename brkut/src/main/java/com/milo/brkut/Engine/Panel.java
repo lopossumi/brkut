@@ -16,6 +16,11 @@ public class Panel extends JPanel {
     private Logic logic;
     private int tick;
 
+    public void setLogic(Logic logic) {
+        this.logic = logic;
+        this.tick = 0;
+    }
+
     public Panel(Logic logic) {
         this.logic = logic;
         this.tick = 0;
@@ -33,7 +38,7 @@ public class Panel extends JPanel {
     public void paint(Graphics g) {
         tick();
         super.paint(g);
-        this.setBackground(new Color(30,30,30));
+        this.setBackground(new Color(30, 30, 30));
         drawGrid(g);
         drawSineWave(g);
 
@@ -42,6 +47,9 @@ public class Panel extends JPanel {
         }
         if (logic.getStatus() == GameStatusEnum.GAMEOVER) {
             drawGameOver(g);
+        }
+        if (logic.getStatus() == GameStatusEnum.HIGHSCORE) {
+            drawNewHighScore(g);
         }
 
         drawScore(g);
@@ -106,12 +114,17 @@ public class Panel extends JPanel {
         g.setFont(new Font("default", Font.BOLD, 30));
 
         // Animate color
-        g.setColor(new Color(
-                (int) (127 + 127 * Math.sin(this.tick / 17)),
-                (int) (127 + 127 * Math.sin(this.tick / 11)),
-                (int) (127 + 127 * Math.sin(this.tick / 19))));
+        g.setColor(animateColor());
         start = ("(PRESS SPACE TO LAUNCH)").toCharArray();
         g.drawChars(start, 0, start.length, 180, 400);
+    }
+
+    private Color animateColor() {
+        return new Color(
+                (int) (127 + 127 * Math.sin(this.tick / 17)),
+                (int) (127 + 127 * Math.sin(this.tick / 11)),
+                (int) (127 + 127 * Math.sin(this.tick / 19)));
+
     }
 
     private void drawGameOver(Graphics g) {
@@ -119,10 +132,26 @@ public class Panel extends JPanel {
         g.setColor(Color.GREEN);
         char[] gameover = ("G A M E   O V E R").toCharArray();
         g.drawChars(gameover, 0, gameover.length, 230, 350);
+        drawYesNo(g);
+    }
+
+    private void drawNewHighScore(Graphics g) {
+        g.setFont(new Font("default", Font.BOLD, 40));
+        g.setColor(animateColor());
+        char[] gameover = ("H I G H   S C O R E !").toCharArray();
+        g.drawChars(gameover, 0, gameover.length, 230, 350);
+        drawYesNo(g);
+    }
+
+    private void drawYesNo(Graphics g) {
+        g.setFont(new Font("default", Font.BOLD, 40));
+        g.setColor(Color.GREEN);
+        char[] yesNo = ("TRY AGAIN? (Y/N)").toCharArray();
+        g.drawChars(yesNo, 0, yesNo.length, 230, 400);
     }
 
     private void drawGrid(Graphics g) {
-        g.setColor(new Color(0, Math.abs(tick/2-90), 0));
+        g.setColor(new Color(0, Math.abs(tick / 2 - 90), 0));
 
         int gridWidth = 40;
         for (int x = 0; x < Config.ARENA_WIDTH; x = x + gridWidth) {
@@ -140,7 +169,7 @@ public class Panel extends JPanel {
         int step = 1;
         double amp = 15 + 50 * (this.logic.getMultiplier() - 1);
         for (int i = 0; i < Config.ARENA_WIDTH; i = i + step) {
-            int y = (int) (yMid+amp*Math.sin((i/20 + tick) / step));
+            int y = (int) (yMid + amp * Math.sin((i / 20 + tick) / step));
             g.drawLine(i, y, i, y);
         }
     }
