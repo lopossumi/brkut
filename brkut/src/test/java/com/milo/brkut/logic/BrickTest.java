@@ -1,9 +1,10 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
 //import org.junit.After;
 //import org.junit.AfterClass;
 //import org.junit.Before;
 //import org.junit.BeforeClass;
+import com.milo.brkut.logic.Brick;
 import java.awt.Color;
 import org.junit.Test;
 import static org.junit.Assert.*;

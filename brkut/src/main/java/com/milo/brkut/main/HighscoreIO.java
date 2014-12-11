@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milo.brkut.Main;
+package com.milo.brkut.main;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,21 +16,22 @@ import java.io.FileOutputStream;
  */
 public class HighscoreIO {
 
-    private final static String filename = Config.HIGHSCORE_FILENAME;
+    private final static String FILENAME = Config.HIGHSCORE_FILENAME;
     
     public static void update(int i) {
         int oldScore = read();
         if (i > oldScore) {
-            try (DataOutputStream os = new DataOutputStream(new FileOutputStream(filename))) {
+            try (DataOutputStream os = new DataOutputStream(new FileOutputStream(FILENAME))) {
                 os.writeInt(i);
                 os.close();
             } catch (Exception ex) {
+                System.out.println("Could not write to file " + FILENAME);
             }
         }
     }
 
     public static int read() {
-        try (DataInputStream is = new DataInputStream(new FileInputStream(filename))) {
+        try (DataInputStream is = new DataInputStream(new FileInputStream(FILENAME))) {
             int score = is.readInt();
             is.close();
             return score;

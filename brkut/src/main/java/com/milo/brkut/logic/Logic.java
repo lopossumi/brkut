@@ -1,7 +1,7 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Engine.KeypressEnum;
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.engine.KeypressEnum;
+import com.milo.brkut.main.Config;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,6 +19,7 @@ public class Logic {
     private int highScore;
 
     private boolean hit;
+    private boolean wallHit;
     private boolean launchAllowed;
 
     public Logic(int highScore) {
@@ -42,6 +43,7 @@ public class Logic {
         this.multiplier = 1.0;
 
         this.hit = false;
+        this.wallHit = false;
         this.launchAllowed = true;
     }
 
@@ -67,9 +69,11 @@ public class Logic {
 
         if (ball.getX() - ball.getWidth() / 2 < 0 || ball.getX() + ball.getWidth() / 2 > Config.ARENA_WIDTH) {
             ball.bounceHorizontal();
+            this.wallHit = true;
         }
         if (ball.getY() - ball.getHeight() / 2 < 0) {
             ball.bounceVertical();
+            this.wallHit = true;
         }
         if (ball.getY() > Config.ARENA_HEIGHT) {
             playerOne.kill();
@@ -81,18 +85,24 @@ public class Logic {
     /**
      * Selects a correct game status from a list of possible values.
      *
-     * @return
+     * @return A game status.
      */
     public GameStatusEnum getStatus() {
-        if (launchAllowed) {
+        if (this.launchAllowed) {
             return GameStatusEnum.START;
         } else if (this.hit) {
             this.hit = false;
             return GameStatusEnum.HIT;
+        } else if (this.wallHit) {
+            this.wallHit = false;
+            return GameStatusEnum.WALLHIT;
         } else if (bricks.isEmpty()) {
-            return GameStatusEnum.WON;
-        } else if (playerOne.getLives() == 0
-                && this.score > this.highScore) {
+            if (this.score > this.highScore) {
+                return GameStatusEnum.WONHIGHSCORE;
+            } else {
+                return GameStatusEnum.WON;
+            }
+        } else if (playerOne.getLives() == 0 && this.score > this.highScore) {
             return GameStatusEnum.HIGHSCORE;
         } else if (playerOne.getLives() == 0) {
             return GameStatusEnum.GAMEOVER;
@@ -139,9 +149,7 @@ public class Logic {
      * @param input Keyboard inputs
      */
     public void moveBall(boolean[] input) {
-        if (input[KeypressEnum.SPACE.getValue()]
-                && this.launchAllowed == true
-                && Math.abs(this.ball.getX() - this.playerOne.getX()) < this.playerOne.getWidth() / 2) {
+        if (input[KeypressEnum.SPACE.getValue()] && this.launchAllowed == true && Math.abs(this.ball.getX() - this.playerOne.getX()) < this.playerOne.getWidth() / 2) {
             ball.accelerateXY((this.ball.getX() - this.playerOne.getX()) / 15, -5);
             this.launchAllowed = false;
         }
@@ -187,11 +195,13 @@ public class Logic {
                 ball.accelerateX((this.ball.getX() - this.playerOne.getX()) / 20);
                 this.multiplier = 1;
                 Collision.clear(ball, this.playerOne);
+                this.wallHit = true;
                 break;
             case HORIZONTAL:
                 ball.bounceHorizontal();
                 this.multiplier = 1;
                 Collision.clear(ball, this.playerOne);
+                this.wallHit = true;
                 break;
             default:
                 break;

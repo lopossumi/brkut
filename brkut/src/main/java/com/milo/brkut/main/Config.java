@@ -1,4 +1,4 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.main;
 
 import java.awt.Color;
 

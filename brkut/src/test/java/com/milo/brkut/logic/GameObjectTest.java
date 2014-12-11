@@ -1,9 +1,12 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Logic.Collision.bounce;
+import com.milo.brkut.logic.Ball;
+import com.milo.brkut.logic.Brick;
+import com.milo.brkut.logic.GameObject;
+import com.milo.brkut.logic.Collision.bounce;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static com.milo.brkut.Logic.Collision.collision;
+import static com.milo.brkut.logic.Collision.collision;
 
 /**
  *

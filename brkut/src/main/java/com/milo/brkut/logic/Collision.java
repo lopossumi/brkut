@@ -1,11 +1,11 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
  *
- * @author mikko
+ * @author milo
  */
 class Collision {
 
@@ -60,7 +60,7 @@ class Collision {
         double yOverlapAmount = yOverlap(ego, other);
 
         if (xOverlapAmount <= 0 || yOverlapAmount <= 0) {
-
+            // Do nothing
         } else if (xOverlapAmount > yOverlapAmount) {
             if (ego.getY() < other.getY()) {
                 ego.move(0, -yOverlapAmount);
@@ -69,15 +69,17 @@ class Collision {
             }
         } else {
             if (ego.getX() < other.getX()) {
-                ego.move(-xOverlapAmount,0);
+                ego.move(-xOverlapAmount, 0);
             } else {
-                ego.move(xOverlapAmount,0);
+                ego.move(xOverlapAmount, 0);
             }
         }
     }
 
     /**
-     * Returns the amount of overlap between objects (e.g. positive value of 50 means that the objects must be moved 50 units to be clear on the X axis).
+     * Returns the amount of overlap between objects (e.g. positive value of 50
+     * means that the objects must be moved 50 units to be clear on the X axis).
+     *
      * @param ego First object
      * @param other Second object
      * @return Amount of overlap
@@ -85,9 +87,11 @@ class Collision {
     static double xOverlap(GameObject ego, GameObject other) {
         return -Math.abs(ego.getX() - other.getX()) + (ego.getWidth() + other.getWidth()) / 2;
     }
-    
+
     /**
-     * Returns the amount of overlap between objects (e.g. positive value of 50 means that the objects must be moved 50 units to be clear on the Y axis).
+     * Returns the amount of overlap between objects (e.g. positive value of 50
+     * means that the objects must be moved 50 units to be clear on the Y axis).
+     *
      * @param ego First object
      * @param other Second object
      * @return Amount of overlap
@@ -100,6 +104,7 @@ class Collision {
      * Bounce types.
      */
     static enum bounce {
+
         NONE, VERTICAL, HORIZONTAL
     }
 }

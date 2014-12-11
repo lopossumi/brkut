@@ -1,7 +1,7 @@
-package com.milo.brkut.Engine;
+package com.milo.brkut.engine;
 
-import com.milo.brkut.Logic.Logic;
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.logic.Logic;
+import com.milo.brkut.main.Config;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -10,14 +10,13 @@ import javax.swing.WindowConstants;
 /**
  * @author milo
  */
-
 public class GUI implements Runnable {
 
     private JFrame window;
     private Logic logic;
     private Panel panel;
     private UserInput input;
-    
+
     public GUI(Logic logic) {
         this.logic = logic;
         this.input = new UserInput(this.logic.getPlayerOne());
@@ -30,7 +29,7 @@ public class GUI implements Runnable {
         window.setPreferredSize(new Dimension(Config.ARENA_WIDTH, Config.ARENA_HEIGHT));
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         createComponents(window.getContentPane());
-        window.addKeyListener(this.input);     
+        window.addKeyListener(this.input);
         window.pack();
         window.setVisible(true);
     }
@@ -51,8 +50,8 @@ public class GUI implements Runnable {
     public JFrame getFrame() {
         return window;
     }
-    
-    public UserInput input(){
+
+    public UserInput input() {
         return this.input;
     }
 

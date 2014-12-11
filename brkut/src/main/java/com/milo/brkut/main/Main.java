@@ -1,8 +1,8 @@
-package com.milo.brkut.Main;
+package com.milo.brkut.main;
 
-import com.milo.brkut.Engine.GUI;
-import com.milo.brkut.Engine.Engine;
-import com.milo.brkut.Logic.*;
+import com.milo.brkut.logic.Logic;
+import com.milo.brkut.engine.GUI;
+import com.milo.brkut.engine.Engine;
 import javax.swing.SwingUtilities;
 
 /**

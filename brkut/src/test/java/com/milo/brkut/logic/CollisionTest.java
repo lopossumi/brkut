@@ -1,5 +1,8 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
+import com.milo.brkut.logic.Ball;
+import com.milo.brkut.logic.Collision;
+import com.milo.brkut.logic.Brick;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

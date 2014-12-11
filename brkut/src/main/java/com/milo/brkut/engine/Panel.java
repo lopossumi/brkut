@@ -1,7 +1,9 @@
-package com.milo.brkut.Engine;
+package com.milo.brkut.engine;
 
-import com.milo.brkut.Logic.*;
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.logic.GameObject;
+import com.milo.brkut.logic.Logic;
+import com.milo.brkut.logic.GameStatusEnum;
+import com.milo.brkut.main.Config;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -49,7 +51,13 @@ public class Panel extends JPanel {
             drawGameOver(g);
         }
         if (logic.getStatus() == GameStatusEnum.HIGHSCORE) {
-            drawNewHighScore(g);
+            drawNewHighscore(g);
+        }
+        if (logic.getStatus() == GameStatusEnum.WON) {
+            drawWon(g);
+        }
+        if (logic.getStatus() == GameStatusEnum.WONHIGHSCORE) {
+            drawWonHighscore(g);
         }
 
         drawScore(g);
@@ -135,7 +143,7 @@ public class Panel extends JPanel {
         drawYesNo(g);
     }
 
-    private void drawNewHighScore(Graphics g) {
+    private void drawNewHighscore(Graphics g) {
         g.setFont(new Font("default", Font.BOLD, 40));
         g.setColor(animateColor());
         char[] gameover = ("H I G H   S C O R E !").toCharArray();
@@ -172,5 +180,18 @@ public class Panel extends JPanel {
             int y = (int) (yMid + amp * Math.sin((i / 20 + tick) / step));
             g.drawLine(i, y, i, y);
         }
+    }
+
+    private void drawWon(Graphics g) {
+        g.setFont(new Font("default", Font.BOLD, 40));
+        g.setColor(animateColor());
+        char[] youWin = ("Y O U   W I N ! ! !").toCharArray();
+        g.drawChars(youWin, 0, youWin.length, 230, 150);
+        drawYesNo(g);
+    }
+
+    private void drawWonHighscore(Graphics g) {
+        drawWon(g);
+        drawNewHighscore(g);
     }
 }

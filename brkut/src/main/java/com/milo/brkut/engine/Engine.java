@@ -1,12 +1,11 @@
-package com.milo.brkut.Engine;
+package com.milo.brkut.engine;
 
-import com.milo.brkut.Logic.*;
-import com.milo.brkut.Main.Config;
-import com.milo.brkut.Main.HighscoreIO;
+import com.milo.brkut.logic.Player;
+import com.milo.brkut.logic.Logic;
+import com.milo.brkut.logic.GameStatusEnum;
+import com.milo.brkut.main.HighscoreIO;
 import java.awt.Color;
 import java.awt.event.WindowEvent;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author milo
@@ -18,15 +17,25 @@ public class Engine extends Thread {
     private boolean running;
     private SoundEngine sounds;
 
+    /**
+     * Engine constructor. Also creates a SoundEngine for sound effects.
+     *
+     * @param gui Graphical user interface
+     * @param logic Game logic
+     */
     public Engine(GUI gui, Logic logic) {
         this.gui = gui;
         this.logic = logic;
-        this.running = true;
+        this.running = false;
         this.sounds = new SoundEngine();
     }
 
+    /**
+     * Starts the game engine and the update-draw-hold loop.
+     */
     @Override
     public void run() {
+        this.running = true;
         while (this.running) {
             update();
             draw();
@@ -45,13 +54,16 @@ public class Engine extends Thread {
         GameStatusEnum status = logic.step(this.gui.input().update());
 
         if (status == GameStatusEnum.HIT) {
-            this.sounds.hit();
+            this.sounds.hit1();
         }
-        if (status == GameStatusEnum.WON) {
+        if (status == GameStatusEnum.WALLHIT) {
+            this.sounds.hit2();
+        }
+        if (status == GameStatusEnum.WON || status == GameStatusEnum.WONHIGHSCORE) {
             doWin();
         }
         if (status == GameStatusEnum.HIGHSCORE) {
-            doHighScore();
+            doHighscore();
         }
         if (status == GameStatusEnum.GAMEOVER) {
             doGameOver();
@@ -77,6 +89,8 @@ public class Engine extends Thread {
 
     /**
      * Wait for the next calculation step.
+     *
+     * @param ms milliseconds to wait
      */
     public void hold(int ms) {
         try {
@@ -97,11 +111,10 @@ public class Engine extends Thread {
     }
 
     /**
-     * Play game over sound, animate paddle dying. TODO: - Show high score -
-     * Show game over text
+     * Play game over sound, animate paddle dying and ask for a new game.
      */
     private void doGameOver() {
-        this.sounds.died();
+        this.sounds.gameover();
         animateDeath();
         int tryAgain = tryAgainQuery();
 
@@ -115,6 +128,11 @@ public class Engine extends Thread {
         }
     }
 
+    /**
+     * Waits for keyboard input (Y/N)
+     *
+     * @return 1 to play again, 0 to quit.
+     */
     private int tryAgainQuery() {
         int playAgain = -1;
         while (playAgain == -1) {
@@ -131,11 +149,11 @@ public class Engine extends Thread {
     }
 
     /**
-     * Play game over sound, animate paddle dying. TODO: - Show high score -
-     * Show game over text
+     * Play game over sound, animate paddle dying and ask for a new game while
+     * showing the animated HIGH SCORE text.
      */
-    private void doHighScore() {
-        this.sounds.died();
+    private void doHighscore() {
+        this.sounds.gameover();
         animateDeath();
         HighscoreIO.update(logic.getScore());
         int tryAgain = tryAgainQuery();
@@ -165,12 +183,14 @@ public class Engine extends Thread {
     }
 
     /**
-     * All bricks are destroyed. Something cool happens.
+     * All bricks are destroyed. Show game over or high score.
      */
     private void doWin() {
-        draw();
-        hold(2000);
-        close();
+        if (this.logic.getScore() > this.logic.getHighscore()) {
+            doHighscore();
+        } else {
+            doGameOver();
+        }
     }
 
     /**

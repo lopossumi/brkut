@@ -1,6 +1,7 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.logic.Player;
+import com.milo.brkut.main.Config;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

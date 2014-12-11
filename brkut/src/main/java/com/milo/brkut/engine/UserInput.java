@@ -1,6 +1,6 @@
-package com.milo.brkut.Engine;
+package com.milo.brkut.engine;
 
-import com.milo.brkut.Logic.Player;
+import com.milo.brkut.logic.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

@@ -1,6 +1,6 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.main.Config;
 import java.awt.Color;
 
 /**
@@ -11,7 +11,7 @@ public class Ball extends GameObject {
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.color = Config.BALL_COLOR;
-	this.setMaxSpeed(Config.BALL_MAXSPEED);
+        this.setMaxSpeed(Config.BALL_MAXSPEED);
     }
 
     public void bounceHorizontal() {

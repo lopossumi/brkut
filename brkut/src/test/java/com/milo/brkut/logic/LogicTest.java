@@ -1,7 +1,13 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Engine.KeypressEnum;
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.logic.Ball;
+import com.milo.brkut.logic.GameStatusEnum;
+import com.milo.brkut.logic.Logic;
+import com.milo.brkut.logic.Brick;
+import com.milo.brkut.logic.GameObject;
+import com.milo.brkut.logic.Player;
+import com.milo.brkut.engine.KeypressEnum;
+import com.milo.brkut.main.Config;
 import java.util.HashSet;
 import org.junit.Test;
 import static org.junit.Assert.*;

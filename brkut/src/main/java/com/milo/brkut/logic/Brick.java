@@ -1,6 +1,6 @@
-package com.milo.brkut.Logic;
+package com.milo.brkut.logic;
 
-import com.milo.brkut.Main.Config;
+import com.milo.brkut.main.Config;
 import java.awt.Color;
 
 /**
@@ -20,20 +20,21 @@ public class Brick extends GameObject {
 
     @Override
     public void damage(int amount) {
-        if (amount>this.hitpoints)
+        if (amount > this.hitpoints) {
             this.hitpoints = 0;
-        else 
-            this.hitpoints-=amount;
-        
+        } else {
+            this.hitpoints -= amount;
+        }
+
         updateColor();
     }
 
     private void updateColor() {
         if (this.hitpoints > 1) {
             this.color = Color.GREEN;
-        }
-        else
+        } else {
             this.color = Color.RED;
+        }
     }
 
     @Override
@@ -44,8 +45,8 @@ public class Brick extends GameObject {
     public int getHitpoints() {
         return this.hitpoints;
     }
-    
-    public void setColor(Color color){
+
+    public void setColor(Color color) {
         this.color = color;
     }
 }

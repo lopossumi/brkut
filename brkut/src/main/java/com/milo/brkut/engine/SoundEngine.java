@@ -1,4 +1,4 @@
-package com.milo.brkut.Engine;
+package com.milo.brkut.engine;
 
 import java.io.*;
 import sun.audio.*;
@@ -12,8 +12,16 @@ public class SoundEngine {
     public SoundEngine() {
     }
 
-    public void hit() {
+    public void hit1() {
         play("media/hit1.wav");
+    }
+
+    public void hit2() {
+        play("media/hit2.wav");
+    }
+
+    public void gameover() {
+        play("media/gameover.wav");
     }
 
     public void died() {
