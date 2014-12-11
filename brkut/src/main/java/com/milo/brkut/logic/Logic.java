@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
+ * Game logic (object positions, score etc).
  * @author milo
  */
 public class Logic {

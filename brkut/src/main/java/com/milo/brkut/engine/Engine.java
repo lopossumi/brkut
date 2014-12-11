@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.event.WindowEvent;
 
 /**
+ * Game engine.
  * @author milo
  */
 public class Engine extends Thread {

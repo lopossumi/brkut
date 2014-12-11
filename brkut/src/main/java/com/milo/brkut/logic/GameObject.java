@@ -3,6 +3,7 @@ package com.milo.brkut.logic;
 import java.awt.Color;
 
 /**
+ * An abstract GameObject (implemented as Ball, Brick or Player).
  * @author milo
  */
 public abstract class GameObject {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- *
+ * Collision helper functions.
  * @author milo
  */
 class Collision {

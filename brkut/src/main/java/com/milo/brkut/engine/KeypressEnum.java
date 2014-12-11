@@ -1,7 +1,7 @@
 package com.milo.brkut.engine;
 
 /**
- *
+ * Enumeration of possible keyboard inputs.
  * @author milo
  */
 public enum KeypressEnum {

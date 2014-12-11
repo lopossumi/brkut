@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 /**
+ * Graphical user interface for the game engine.
  * @author milo
  */
 public class GUI implements Runnable {
@@ -17,11 +18,18 @@ public class GUI implements Runnable {
     private Panel panel;
     private UserInput input;
 
+    /**
+     * Creates a new gui and binds the keyboard input to player one.
+     * @param logic Game logic
+     */
     public GUI(Logic logic) {
         this.logic = logic;
         this.input = new UserInput(this.logic.getPlayerOne());
     }
 
+    /**
+     * Starts the GUI by drawing the window.
+     */
     @Override
     public void run() {
         window = new JFrame("BRKUT");
@@ -34,11 +42,18 @@ public class GUI implements Runnable {
         window.setVisible(true);
     }
 
+    /**
+     * Adds the Panel (JPanel extension) to the top level container.
+     * @param container 
+     */
     public void createComponents(Container container) {
         panel = new Panel(logic);
         container.add(panel);
     }
 
+    /**
+     * Repaints the window.
+     */
     public void draw() {
         if (panel == null) {
             return;

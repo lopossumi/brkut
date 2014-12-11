@@ -4,6 +4,7 @@ import com.milo.brkut.main.Config;
 import java.awt.Color;
 
 /**
+ * The Player.
  * @author milo
  */
 public class Player extends GameObject {
@@ -23,15 +24,26 @@ public class Player extends GameObject {
         return this.lives;
     }
 
+    /**
+     * Adds an extra life.
+     */
     public void addLife() {
         this.lives++;
     }
 
+    /**
+     * Kills the player.
+     */
     public void kill() {
         this.alive = false;
         this.lives--;
     }
 
+    /**
+     * Respawns the player to the starting position.
+     * @param x Starting position x coordinate
+     * @param y Starting position y coordinate
+     */
     public void respawn(double x, double y) {
         this.alive = true;
         this.stop();

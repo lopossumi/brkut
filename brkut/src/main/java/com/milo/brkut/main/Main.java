@@ -6,6 +6,7 @@ import com.milo.brkut.engine.Engine;
 import javax.swing.SwingUtilities;
 
 /**
+ * BRKUT - Yet another breakout clone.
  * @author milo
  */
 public class Main {

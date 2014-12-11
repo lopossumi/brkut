@@ -1,9 +1,9 @@
 package com.milo.brkut.logic;
 
 import com.milo.brkut.main.Config;
-import java.awt.Color;
 
 /**
+ * The ball.
  * @author milo
  */
 public class Ball extends GameObject {
@@ -14,10 +14,16 @@ public class Ball extends GameObject {
         this.setMaxSpeed(Config.BALL_MAXSPEED);
     }
 
+    /**
+     * Bounces the ball horizontally (direction flips from right to left or vice versa).
+     */
     public void bounceHorizontal() {
         this.setVx(-this.getVx());
     }
 
+    /**
+     * Bounces the ball vertically (direction flips from up to down or vice versa).
+     */
     public void bounceVertical() {
         this.setVy(-this.getVy());
     }

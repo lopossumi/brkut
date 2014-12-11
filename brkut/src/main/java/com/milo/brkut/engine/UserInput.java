@@ -5,7 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- *
+ * Listens to keyboard input and marks the active keys to a boolean table.
+ * Index can be found on KeypressEnum.
  * @author milo
  */
 public class UserInput implements KeyListener {
@@ -20,6 +21,10 @@ public class UserInput implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Marks the pressed keys as true in the boolean table.
+     * @param e Keyboard event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -35,6 +40,10 @@ public class UserInput implements KeyListener {
         }
     }
 
+    /**
+     * Marks the released keys as false in the boolean table.
+     * @param e Keyboard event
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -50,6 +59,10 @@ public class UserInput implements KeyListener {
         }
     }
 
+    /**
+     * Returns the pressed keys and clears space, Y and N (sets their state to false).
+     * @return Keypress table
+     */
     public boolean[] update() {
         boolean[] temp;
         temp = this.keyPresses.clone();
@@ -58,5 +71,4 @@ public class UserInput implements KeyListener {
         this.keyPresses[KeypressEnum.N.getValue()] = false;
         return temp;
     }
-
 }

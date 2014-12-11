@@ -4,6 +4,7 @@ import com.milo.brkut.main.Config;
 import java.awt.Color;
 
 /**
+ * The bricks.
  * @author milo
  */
 public class Brick extends GameObject {
@@ -18,6 +19,10 @@ public class Brick extends GameObject {
         this.alive = true;
     }
 
+    /**
+     * Damages the brick reducing its hitpoints towards zero.
+     * @param amount Amount of damage inflicted.
+     */
     @Override
     public void damage(int amount) {
         if (amount > this.hitpoints) {
@@ -29,6 +34,9 @@ public class Brick extends GameObject {
         updateColor();
     }
 
+    /**
+     * Updates the color to RED if hitpoints are 1.
+     */
     private void updateColor() {
         if (this.hitpoints > 1) {
             this.color = Color.GREEN;
@@ -37,6 +45,10 @@ public class Brick extends GameObject {
         }
     }
 
+    /**
+     * Returns true if more than zero hitpoints.
+     * @return true for living bricks
+     */
     @Override
     public boolean isAlive() {
         return (this.hitpoints > 0);
