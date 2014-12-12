@@ -47,14 +47,18 @@ public class SoundEngine {
      *
      * @param sample Sample filename
      */
-    private void play(String sample) {
+    private void play(final String sample) {
         if (Config.SOUNDS) {
-            try {
-                InputStream in = new FileInputStream(sample);
-                AudioStream audio = new AudioStream(in);
-                AudioPlayer.player.start(audio);
-            } catch (Exception ex) {
-            }
+            new Thread() {
+                public void run() {
+                    try {
+                        InputStream in = new FileInputStream(sample);
+                        AudioStream audio = new AudioStream(in);
+                        AudioPlayer.player.start(audio);
+                    } catch (Exception ex) {
+                    }
+                }
+            }.start();
         }
     }
 }
