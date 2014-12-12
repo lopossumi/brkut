@@ -5,59 +5,21 @@ BRKUT - Yet another breakout clone (a java course project).
 
 http://javalabra.github.io/Javalabra2014-2/#/pages/
 
-Features: (TODO)
-* High scores!
+Features:
+* High score!
 * Sound effects!
 * Green-on-black graphics!
-* Increasing difficulty level!
-
-Additional features (pick some): (if the main features are finished too soon)
-* Powerups!
-* Multi-ball!
-* Evolving music!
-* Rotating paddle!
-* Advanced graphics!
-* Animated splash screen!
-* Moving destructible objects!
+* Animations!
 
 About the project
 =================
-BRKUT is a simple pong-type game against a destructible brick wall. The bricks have different strengths (hit points). The ball launch angle varies as a function of the contact point on the paddle. The game proceeds to the next, more difficult level whenever all the bricks are destroyed. If the player misses the ball, one life is lost; when all lives are lost, the game is over.
+BRKUT is a Breakout clone, a simple pong-type game against a destructible brick wall. Each brick takes two hits to destroy, and each hit scores 100 points. The ball launch angle varies as a function of the contact point on the paddle. If the player misses the ball, one life is lost; when all lives are lost, the game is over. 
 
-Due to time constraints and personal preference, the game will feature oldskool lo-fi aesthetics: a square ball, limited amount of colours, 8-bit sounds and three-letter initials on the high score table.
+The bonus multiplier is the key to high scores: every time the ball hits a brick, multiplier increases by 0.1. When the ball hits the paddle, the multiplier resets back to 1.0x. In order to get a high score, aim for the gaps and try to get multiple consecutive hits on bricks. The starry wave effect in the middle of the screen shows the multiplier as its amplitude.
 
-![Concept art](https://github.com/lopossumi/brkut/blob/master/images/screenshot.png)
+![Screenshot](https://github.com/lopossumi/brkut/blob/master/images/screenshot.png)
 **Figure 1:** Actual game footage.
 
-TODO
-====
-**2nd deadline tasks: DONE!**
-- [x] Start coding program logic
-- [x] Write unit tests [12/10+]
-- [x] Generate PIT report
-- [x] Draw a preliminary class diagram 
-
-**High order tasks:**
-- [x] Study testing
-- [x] Concept art
-- [ ] Sound design and sampling
-
-**Coding tasks:**
-- [x] Draw a blank canvas
-- [x] Draw a rectangle on the canvas
-- [x] Move a rectangle on the canvas
-- [x] Bounce a square ball from < ^ > walls
-- [x] Move the rectangle (paddle) with user input (constant speed, no inertia)
-- [x] Add inertia
-- [x] Add collision with paddle
-- [x] Launch angle function
-- [x] Create bricks
-- [x] Add collision with bricks
-- [x] Destroyable bricks
-- [x] Score & lives & level counter
-- [ ] Arena generation
-- [ ] Levels
-- [ ] Game over screen with stats
-- [ ] High score table
-- [x] Launch screen (player press start)
-- [ ] ...
+How to play
+===========
+Press space to launch, press left to move the paddle to the left, and press right to move the paddle to the right. Aim for the high score - that's about it. :)
