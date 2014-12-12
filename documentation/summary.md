@@ -21,6 +21,12 @@ A simplified sequence diagram of one frame where a hit event occurs is presented
 
 **Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
 
+Move left
+---------
+Sequence for an event where player presses the LEFT key. The paddle accelerates left.
+![Sequence Diagram Left](https://raw.githubusercontent.com/lopossumi/brkut/master/documentation/Sequence%20diagrams/SequenceDiagramMoveLeft.png)
+**Figure 3:** Sequence diagram for a move left event (one frame).
+
 Logic: Collision detection
 ==========================
 
@@ -28,6 +34,6 @@ Collisions are detected between GameObjects. To determine where the ball should 
 
 ![Collision testing](https://github.com/lopossumi/brkut/blob/master/images/collision.png)
 
-**Figure 3:** Testing collision detection in Excel.
+**Figure 4:** Testing collision detection in Excel.
 
 Collision between the ball and the paddle alters the launch angle of the ball. Determining the launch angle is handled separately.
