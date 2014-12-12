@@ -1,5 +1,14 @@
-BRKUT: Executive summary on implementation
-==========================================
+BRKUT: Manual - an executive summary on implementation
+======================================================
+
+Program Description
+-------------------
+
+When launching the program, a window is created (800x600). Game objects (the bricks, ball & player), effects and text elements are shown on the window: the game is now already running, and the paddle can be moved left and right.
+
+The game engine determines the game state and draws pictures on screen, then proceeds to wait for 1/60 seconds. As the graphics are very simple, this results in a ~60 fps frame rate on a modern system.
+
+The paddle accelerates rapidly and it has some inertia and friction. When the paddle and ball make contact, the ball angle changes relative to their positions.
 
 The application is divided into three packages (main, engine and logic):
 * Main handles file I/O and launches the game engine
