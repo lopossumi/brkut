@@ -25,4 +25,6 @@
 |2014-12-09 | 4.0   | Sequence diagrams, collision bugfix, some refactoring          |
 |2014-12-10 | 4.0   | New game, You Win etc.                                         |
 |2014-12-11 | 4.0   | Checkstyle battle, javadocs, some fixes/tweaks                 |
-|2014-12-12 | 5.0   | Demo day, sound threading, last fixes, checkstyle report etc.  |
+|2014-12-12 | 4.0   | Demo day, sound threading, last fixes, checkstyle report etc.  |
+
+Hours are approximate and non-efficient.
