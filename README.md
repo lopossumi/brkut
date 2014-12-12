@@ -23,3 +23,7 @@ The bonus multiplier is the key to high scores: every time the ball hits a brick
 How to play
 ===========
 Press space to launch, press left to move the paddle to the left, and press right to move the paddle to the right. Aim for the high score - that's about it. :)
+
+Documentation
+=============
+See ![doc](/documentation/summary.md)
