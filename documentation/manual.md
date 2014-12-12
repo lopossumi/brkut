@@ -10,6 +10,9 @@ The game engine determines the game state and draws pictures on screen, then pro
 
 The paddle accelerates rapidly and it has some inertia and friction. When the paddle and ball make contact, the ball angle changes relative to their positions.
 
+Classes and packages
+--------------------
+
 The application is divided into three packages (main, engine and logic):
 * Main handles file I/O and launches the game engine
 * Engine handles the update-view-hold -loop, and includes the graphical user interface, keyboard input and sounds
@@ -20,7 +23,8 @@ The application is divided into three packages (main, engine and logic):
 **Figure 1:** Class diagram with packages and connections.
 
 Testing
-=======
+-------
+
 JUnit tests are written for the game logic package: PIT reports can be found on the PIT documents/PIT folder. Other packages were tested manually:
 * **main**: Highscore is read from a file (highscore.dat). If no file is present, the high score is set to zero and the file is created on game over when a higher score is achieved.
 * **engine**: Game starts, restarts and quits like it should. Keyboard events for a new game (Y/N) are not detected while the death animation is running, but it's hardly noticeable unless playing without sounds.
@@ -29,18 +33,18 @@ JUnit tests are written for the game logic package: PIT reports can be found on 
 * **sound**: Sounds were tested by playing the game. Samples play correctly, but buffering would be needed to avoid lag on some systems. Most performance problems were fixed by creating threads for the audio.
 
 Sequence diagrams
-=================
+------------------
 
-Hit event
----------
+**Hit event**
+
 A simplified sequence diagram of one frame where a hit event occurs is presented below. Points are added, a sound sample is played and the screen is updated with the game state before going on hold before the next frame.
 
 ![Sequence Diagram Hit](https://github.com/lopossumi/brkut/blob/master/documentation/Sequence%20diagrams/SequenceDiagramHit.png)
 
 **Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
 
-Move left
----------
+**Move left**
+
 Sequence for an event where player presses the LEFT key. The paddle accelerates left.
 ![Sequence Diagram Left](https://raw.githubusercontent.com/lopossumi/brkut/master/documentation/Sequence%20diagrams/SequenceDiagramMoveLeft.png)
 **Figure 3:** Sequence diagram for a move left event (one frame).
