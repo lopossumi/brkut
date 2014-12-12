@@ -15,7 +15,7 @@ BRKUT is a Breakout clone, a simple pong-type game against a destructible brick 
 
 The bonus multiplier is the key to high scores: every time the ball hits a brick, multiplier increases by 0.1. When the ball hits the paddle, the multiplier resets back to 1.0x. In order to get a high score, aim for the gaps and try to get multiple consecutive hits on bricks. The starry wave effect in the middle of the screen shows the multiplier as its amplitude.
 
-![Screenshot](https://github.com/lopossumi/brkut/blob/master/images/screenshot.png)
+![Screenshot](https://github.com/lopossumi/brkut/blob/master/images/screenshot.gif)
 
 **Figure 1:** Actual game footage.
 
