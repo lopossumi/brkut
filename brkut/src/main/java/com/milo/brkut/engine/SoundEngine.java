@@ -50,6 +50,7 @@ public class SoundEngine {
     private void play(final String sample) {
         if (Config.SOUNDS) {
             new Thread() {
+                @Override
                 public void run() {
                     try {
                         InputStream in = new FileInputStream(sample);
