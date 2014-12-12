@@ -25,4 +25,4 @@ Press space to launch, press left to move the paddle to the left, and press righ
 
 Documentation
 =============
-See [summary](/documentation/summary.md) for notes on project implementation. Test reports etc. can be found on the documentation folder.
+See [summary](/documentation/summary.md) for notes on project implementation, including sequence diagrams, manual testing and ideas for future development. Mutation test and checkstyle reports can be found on the documentation folder.
