@@ -26,3 +26,5 @@ Press space to launch, press left to move the paddle to the left, and press righ
 Documentation
 =============
 See [manual](/documentation/manual.md) for notes on project implementation, including sequence diagrams, manual testing and ideas for future development. Mutation test and checkstyle reports can be found on the documentation folder.
+
+[Diary](https://github.com/lopossumi/brkut/blob/master/documentation/diary.md) contains the project schedule.
