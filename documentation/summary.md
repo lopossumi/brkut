@@ -15,9 +15,9 @@ Testing
 JUnit tests are written for the game logic package: PIT reports can be found on the PIT documents/PIT folder. Other packages were tested manually:
 * **main**: Highscore is read from a file (highscore.dat). If no file is present, the high score is set to zero and the file is created on game over when a higher score is achieved.
 * **engine**: Game starts, restarts and quits like it should. Keyboard events for a new game (Y/N) are not detected while the death animation is running, but it's hardly noticeable unless playing without sounds.
-* **engine**: Keyboard events were tested simply by playing the game. No problems were detected after using the boolean table to store key state.
-* **engine**: Sounds were tested by playing the game. Samples play correctly, but buffering would be needed to avoid lag on some systems. Most problems were fixed by creating threads for the audio.
-* **engine**: Panel and GUI were also tested simply by running the game. All gameobjects report to correct places and the game runs smoothly on most systems. All game state dependent texts are shown correctly.
+* **input**: Keyboard events were tested simply by playing the game. No problems were detected after using the boolean table to store key state.
+* **gui**: Panel and GUI were also tested simply by running the game. All gameobjects report to correct places and the game runs smoothly on most systems. All game state dependent texts are shown correctly.
+* **sound**: Sounds were tested by playing the game. Samples play correctly, but buffering would be needed to avoid lag on some systems. Most performance problems were fixed by creating threads for the audio.
 
 Sequence diagrams
 =================
