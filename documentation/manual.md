@@ -35,7 +35,7 @@ JUnit tests are written for the game logic package: PIT reports can be found on 
 Sequence diagrams
 ------------------
 
-**Hit event**
+***Hit event***
 
 A simplified sequence diagram of one frame where a hit event occurs is presented below. Points are added, a sound sample is played and the screen is updated with the game state before going on hold before the next frame.
 
