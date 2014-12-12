@@ -35,7 +35,7 @@ JUnit tests are written for the game logic package: PIT reports can be found on 
 Sequence diagrams
 ------------------
 
-_***Hit event***_
+***Hit event***
 
 A simplified sequence diagram of one frame where a hit event occurs is presented below. Points are added, a sound sample is played and the screen is updated with the game state before going on hold before the next frame.
 
@@ -43,7 +43,7 @@ A simplified sequence diagram of one frame where a hit event occurs is presented
 
 **Figure 2:** Sequence diagram for a hit event (one frame where a ball hits a brick).
 
-_***Move left***_
+***Move left***
 
 Sequence for an event where player presses the LEFT key. The paddle accelerates left.
 ![Sequence Diagram Left](https://raw.githubusercontent.com/lopossumi/brkut/master/documentation/Sequence%20diagrams/SequenceDiagramMoveLeft.png)
@@ -67,5 +67,5 @@ I had some performance issues on this one, so now each played sample launches a 
 Thanks for the sound samples go to Atom Splitter Audio & Mike Koenig.
 
 Ideas on future development
-===========================
+---------------------------
 I might rewrite the whole game on a proper game engine. The plan is to create a pong/breakout hybrid with two paddles, two balls and a brick wall in between.
