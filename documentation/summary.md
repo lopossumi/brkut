@@ -37,3 +37,13 @@ Collisions are detected between GameObjects. To determine where the ball should 
 **Figure 4:** Testing collision detection in Excel.
 
 Collision between the ball and the paddle alters the launch angle of the ball. Determining the launch angle is handled separately.
+
+Sounds
+======
+I had some performance issues on this one, so now each played sample launches a thread. Sounds are played using sun.audio, and it's probably implemented poorly - but it's short, and it works.
+
+Thanks for the sound samples go to Atom Splitter Audio & Mike Koenig.
+
+Ideas on future development
+===========================
+I might rewrite the whole game on a proper game engine. The plan is to create a pong/breakout hybrid with two paddles, two balls and a brick wall in between.
