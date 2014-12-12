@@ -19,7 +19,9 @@
         <displayName>Checkstyle</displayName>
         <goals>
             <goal>jxr:jxr</goal>
-            <goal>checkstyle:checkstyle -Dcheckstyle.config.location=checkstyle.xml</goal>
+            <goal>checkstyle:checkstyle</goal>
+            <goal>-Dcheckstyle.config.location=checkstyle.xml</goal>
+            <goal>-X</goal>
         </goals>
     </action>
     <action>

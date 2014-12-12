@@ -22,3 +22,7 @@
 |2014-12-04 | 4.0   | Updated class diagram, PIT report, lots of coding and cleaning |
 |2014-12-04 | 1.0   | Updated class diagram                                          |
 |2014-12-05 | 3.0   | Sequence diagrams, documentation                               |
+|2014-12-09 | 4.0   | Sequence diagrams, collision bugfix, some refactoring          |
+|2014-12-10 | 4.0   | New game, You Win etc.                                         |
+|2014-12-11 | 4.0   | Checkstyle battle, javadocs, some fixes/tweaks                 |
+|2014-12-12 | 5.0   | Demo day, sound threading, last fixes, checkstyle report etc.  |
