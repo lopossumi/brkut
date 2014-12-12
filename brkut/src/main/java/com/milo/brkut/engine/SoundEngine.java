@@ -1,10 +1,12 @@
 package com.milo.brkut.engine;
 
+import com.milo.brkut.main.Config;
 import java.io.*;
 import sun.audio.*;
 
 /**
  * A simple sound engine to play sound effects.
+ *
  * @author milo
  */
 public class SoundEngine {
@@ -46,11 +48,13 @@ public class SoundEngine {
      * @param sample Sample filename
      */
     private void play(String sample) {
-        try {
-            InputStream in = new FileInputStream(sample);
-            AudioStream audio = new AudioStream(in);
-            AudioPlayer.player.start(audio);
-        } catch (Exception ex) {
+        if (Config.SOUNDS) {
+            try {
+                InputStream in = new FileInputStream(sample);
+                AudioStream audio = new AudioStream(in);
+                AudioPlayer.player.start(audio);
+            } catch (Exception ex) {
+            }
         }
     }
 }
