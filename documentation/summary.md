@@ -10,6 +10,14 @@ The application is divided into three packages (main, engine and logic):
 
 **Figure 1:** Class diagram with packages and connections.
 
+Testing
+=======
+JUnit tests are written for the game logic package: PIT reports can be found on the PIT documents/PIT folder. Other packages were tested manually:
+* main: Highscore is read from a file (highscore.dat). If no file is present, the high score is set to zero and the file is created on game over when a higher score is achieved.
+* engine: Keyboard events were tested simply by playing the game. No problems were detected after using the boolean table to store key state.
+* engine: Sounds were tested by playing the game. Samples play correctly, but buffering would be needed to avoid lag on some systems. Most problems were fixed by creating threads for the audio.
+* engine: Panel and GUI were also tested simply by running the game. All gameobjects report to correct places and the game runs smoothly on most systems. All game state dependent texts are shown correctly.
+
 Sequence diagrams
 =================
 
